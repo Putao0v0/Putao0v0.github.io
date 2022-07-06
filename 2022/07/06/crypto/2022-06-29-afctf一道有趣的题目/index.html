@@ -76,7 +76,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>1.3k</span>
+    <span>1.2k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciukx8a7j20zk0m8aio.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitcxhpij20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicm0fdw5cj20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclj61ylzj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevo9j1jj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew8gmvyj20zk0m87wh.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeubcbajj20zk0m8h1h.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
         </ul>
       </div>
     </header>
@@ -170,17 +170,77 @@ Putao0v0 = putao</title>
 
     <h1 id="afctf一道有趣的题目"><a class="markdownIt-Anchor" href="#afctf一道有趣的题目">#</a> afctf 一道有趣的题目</h1>
 <p><span class="exturl" data-url="aHR0cHM6Ly9idXVvai5jbi9jaGFsbGVuZ2VzIyU1QkFGQ1RGMjAxOCU1RCVFNCVCOCU4MCVFOSU4MSU5MyVFNiU5QyU4OSVFOCVCNiVBMyVFNyU5QSU4NCVFOSVBMiU5OCVFNyU5QiVBRQ==">链接</span></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">#加密代码</span><br><span class="line">def encrypt(plainText):</span><br><span class="line">    space = 10</span><br><span class="line">    cipherText = &quot;&quot;</span><br><span class="line">    for i in range(len(plainText)):</span><br><span class="line">        if i + space &lt; len(plainText) - 1:</span><br><span class="line">            cipherText += chr(ord(plainText[i]) ^ ord(plainText[i + space]))</span><br><span class="line">        else:</span><br><span class="line">            cipherText += chr(ord(plainText[i]) ^ ord(plainText[space]))</span><br><span class="line">        if ord(plainText[i]) % 2 == 0:</span><br><span class="line">            space += 1</span><br><span class="line">        else:</span><br><span class="line">            space -= 1</span><br><span class="line">    return cipherText</span><br><span class="line">    </span><br><span class="line"># 密码</span><br><span class="line"># 15120d1a0a0810010a031d3e31000d1d170d173b0d173b0c07060206</span><br></pre></td></tr></table></figure>
+<pre><code>#加密代码
+def encrypt(plainText):
+    space = 10
+    cipherText = &quot;&quot;
+    for i in range(len(plainText)):
+        if i + space &lt; len(plainText) - 1:
+            cipherText += chr(ord(plainText[i]) ^ ord(plainText[i + space]))
+        else:
+            cipherText += chr(ord(plainText[i]) ^ ord(plainText[space]))
+        if ord(plainText[i]) % 2 == 0:
+            space += 1
+        else:
+            space -= 1
+    return cipherText
+    
+# 密码
+# 15120d1a0a0810010a031d3e31000d1d170d173b0d173b0c07060206
+</code></pre>
 <p>首先可以知道明文的长度</p>
 <p>这里有一个坑，他给的是 hex，要转成字节，28 位</p>
 <p>要知道每一位的奇偶性，才能知道 space 的变化</p>
 <p>28 位可以爆破</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">def</span> <span class="title function_">get_temp</span>(<span class="params">cipher</span>):</span><br><span class="line">    <span class="keyword">for</span> x <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">1</span> &lt;&lt; <span class="built_in">len</span>(cipher)):</span><br><span class="line">        temp = <span class="built_in">bin</span>(x)[<span class="number">2</span>:].zfill(<span class="built_in">len</span>(cipher))</span><br><span class="line">        space = <span class="number">10</span></span><br><span class="line">        flag = <span class="number">0</span></span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="built_in">len</span>(temp)):</span><br><span class="line">            <span class="keyword">if</span> i + space &lt; <span class="built_in">len</span>(temp) - <span class="number">1</span>:</span><br><span class="line">                tempx = <span class="built_in">int</span>(temp[i]) ^ <span class="built_in">int</span>(temp[i + space])</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                tempx = <span class="built_in">int</span>(temp[i]) ^ <span class="built_in">int</span>(temp[space])</span><br><span class="line">            <span class="keyword">if</span> tempx != (cipher[i] % <span class="number">2</span>):</span><br><span class="line">                flag = <span class="number">1</span></span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> <span class="built_in">int</span>(temp[i]) % <span class="number">2</span> == <span class="number">0</span>:</span><br><span class="line">                space += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                space -= <span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> flag != <span class="number">1</span>:</span><br><span class="line">            <span class="keyword">return</span> temp</span><br><span class="line">            <span class="keyword">break</span></span><br></pre></td></tr></table></figure>
+<pre><code class="language-python">def get_temp(cipher):
+    for x in range(1 &lt;&lt; len(cipher)):
+        temp = bin(x)[2:].zfill(len(cipher))
+        space = 10
+        flag = 0
+        for i in range(len(temp)):
+            if i + space &lt; len(temp) - 1:
+                tempx = int(temp[i]) ^ int(temp[i + space])
+            else:
+                tempx = int(temp[i]) ^ int(temp[space])
+            if tempx != (cipher[i] % 2):
+                flag = 1
+                break
+            elif int(temp[i]) % 2 == 0:
+                space += 1
+            else:
+                space -= 1
+        if flag != 1:
+            return temp
+            break
+</code></pre>
 <p>得到末位的奇偶性<br>
 然后得到每一位和另一位的异或</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">space=10</span><br><span class="line">c=[]</span><br><span class="line">for i in range(len(cipher)):</span><br><span class="line">    if i + space &lt; 28 - 1:</span><br><span class="line">        a=[i,i+space]</span><br><span class="line">    else:</span><br><span class="line">        a=[i,space]</span><br><span class="line">    if ord(tmp[i]) % 2 == 0:</span><br><span class="line">        space += 1</span><br><span class="line">    else:</span><br><span class="line">        space -= 1</span><br><span class="line">    c.append(a)</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
+<pre><code>space=10
+c=[]
+for i in range(len(cipher)):
+    if i + space &lt; 28 - 1:
+        a=[i,i+space]
+    else:
+        a=[i,space]
+    if ord(tmp[i]) % 2 == 0:
+        space += 1
+    else:
+        space -= 1
+    c.append(a)
+print(c)
+</code></pre>
 <p>因为这道题目的 flag 是以’afctf {' 开头的，就可以继续爆破了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">plain=[&#x27;a&#x27;,&#x27;f&#x27;,&#x27;c&#x27;,&#x27;t&#x27;,&#x27;f&#x27;,&#x27;&#123;&#x27;]+[-1]*22</span><br><span class="line">while -1 in plain:</span><br><span class="line">    for i in range(26):</span><br><span class="line">        if(plain[i]!=-1):</span><br><span class="line">            plain[c[i][1]]=chr(cipher[i]^ord(plain[i]))</span><br><span class="line">        elif(plain[c[i][1]]!=-1):</span><br><span class="line">            plain[i]=chr(cipher[i]^ord(plain[c[i][1]]))</span><br><span class="line"></span><br><span class="line">for i in plain:</span><br><span class="line">    print(i,end=&#x27;&#x27;)</span><br></pre></td></tr></table></figure>
+<pre><code>plain=['a','f','c','t','f','&#123;']+[-1]*22
+while -1 in plain:
+    for i in range(26):
+        if(plain[i]!=-1):
+            plain[c[i][1]]=chr(cipher[i]^ord(plain[i]))
+        elif(plain[c[i][1]]!=-1):
+            plain[i]=chr(cipher[i]^ord(plain[c[i][1]]))
+
+for i in plain:
+    print(i,end='')
+</code></pre>
 
       <div class="tags">
           <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"><i class="ic i-tag"></i> 刷题</a>
@@ -235,7 +295,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/07/06/crypto/2022-06-29-%5BNPUCTF2020%5DMersenne-twister/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipet4bz0yj20zk0m8e81.jpg" title="NPUCTF2020 Mersenne twister">
+  <a href="/2022/07/06/crypto/2022-06-29-%5BNPUCTF2020%5DMersenne-twister/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicli3sbvtj20zk0m8x6p.jpg" title="NPUCTF2020 Mersenne twister">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>NPUCTF2020 Mersenne twister</h3>
@@ -245,7 +305,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/07/06/crypto/2022-07-04-%5B%E5%AE%89%E6%B4%B5%E6%9D%AF%202020%5Deasyaes/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeun65urj20zk0m81ii.jpg" title="安洵杯 2020 easyaes">
+  <a href="/2022/07/06/crypto/2022-07-04-%5B%E5%AE%89%E6%B4%B5%E6%9D%AF%202020%5Deasyaes/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewkhf1zj20zk0m81kx.jpg" title="安洵杯 2020 easyaes">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>安洵杯 2020 easyaes</h3>
@@ -390,13 +450,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

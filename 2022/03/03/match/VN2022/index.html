@@ -74,7 +74,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>7.3k</span>
+    <span>6.2k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -82,7 +82,7 @@ Putao0v0 = putao</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>7 mins.</span>
+    <span>6 mins.</span>
   </span>
 </div>
 
@@ -115,12 +115,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicli9lfebj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giph4fomxoj20zk0m8axp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciuja1j1j20zk0m8kjl.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipexj2jgzj20zk0m8b09.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit31ffoj20zk0m8naf.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclj61ylzj20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipewkhf1zj20zk0m81kx.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
         </ul>
       </div>
     </header>
@@ -167,14 +167,295 @@ Putao0v0 = putao</title>
     
 
     <h2 id="ezmath"><a class="markdownIt-Anchor" href="#ezmath">#</a> ezmath</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span>*</span><br><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> flag,check</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> sha256</span><br><span class="line"><span class="keyword">import</span> socketserver</span><br><span class="line"><span class="keyword">import</span> signal</span><br><span class="line"><span class="keyword">import</span> string </span><br><span class="line"></span><br><span class="line">table = string.ascii_letters+string.digits</span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Task</span>(socketserver.BaseRequestHandler):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_recvall</span>(<span class="params">self</span>):</span><br><span class="line">        BUFF_SIZE = <span class="number">2048</span></span><br><span class="line">        data = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            part = self.request.recv(BUFF_SIZE)</span><br><span class="line">            data += part</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(part) &lt; BUFF_SIZE:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> data.strip()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">send</span>(<span class="params">self, msg, newline=<span class="literal">True</span></span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">if</span> newline:</span><br><span class="line">                msg += <span class="string">b&#x27;\n&#x27;</span></span><br><span class="line">            self.request.sendall(msg)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recv</span>(<span class="params">self, prompt=<span class="string">b&#x27;&#x27;</span></span>):</span><br><span class="line">        self.send(prompt, newline=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> self._recvall()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">proof_of_work</span>(<span class="params">self</span>):</span><br><span class="line">        proof = (<span class="string">&#x27;&#x27;</span>.join([random.choice(table)<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)])).encode()</span><br><span class="line">        sha = sha256(proof).hexdigest().encode()</span><br><span class="line">        self.send(<span class="string">b&quot;[+] sha256(XXXX+&quot;</span> + proof[<span class="number">4</span>:] + <span class="string">b&quot;) == &quot;</span> + sha )</span><br><span class="line">        XXXX = self.recv(prompt = <span class="string">b&#x27;[+] Plz Tell Me XXXX :&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(XXXX) != <span class="number">4</span> <span class="keyword">or</span> sha256(XXXX + proof[<span class="number">4</span>:]).hexdigest().encode() != sha:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self</span>):</span><br><span class="line">        proof = self.proof_of_work()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> proof:</span><br><span class="line">            self.request.close()</span><br><span class="line">        counts = <span class="number">0</span></span><br><span class="line">        signal.alarm(<span class="number">60</span>)</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">777</span>):</span><br><span class="line">            times = getPrime(<span class="number">32</span>)</span><br><span class="line">            self.send(<span class="string">b&#x27;plz give me the &#x27;</span> + <span class="built_in">str</span>(times).encode() + <span class="string">b&#x27;th (n) that satisfying (2^n-1) % 15 == 0:&#x27;</span>)</span><br><span class="line">            n = <span class="built_in">int</span>(self.recv())</span><br><span class="line">            a , ret = check(times,n)</span><br><span class="line">            <span class="keyword">if</span> a == <span class="literal">True</span>:</span><br><span class="line">                self.send(ret.encode())</span><br><span class="line">                counts += <span class="number">1</span></span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.send(ret.encode())</span><br><span class="line">        <span class="keyword">if</span> counts == <span class="number">777</span>:</span><br><span class="line">            self.send(<span class="string">b&#x27;You get flag!&#x27;</span>)</span><br><span class="line">            self.send(flag)</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            self.send(<span class="string">b&#x27;something wrong?&#x27;</span>)</span><br><span class="line">        self.request.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ThreadedServer</span>(socketserver.ThreadingMixIn, socketserver.TCPServer):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ForkedServer</span>(socketserver.ForkingMixIn, socketserver.TCPServer):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    HOST, PORT = <span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">10001</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;HOST:POST &quot;</span> + HOST+<span class="string">&quot;:&quot;</span> + <span class="built_in">str</span>(PORT))</span><br><span class="line">    server = ForkedServer((HOST, PORT), Task)</span><br><span class="line">    server.allow_reuse_address = <span class="literal">True</span></span><br><span class="line">    server.serve_forever() </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-python">from Crypto.Util.number import*
+import random
+from secret import flag,check
+from hashlib import sha256
+import socketserver
+import signal
+import string 
+
+table = string.ascii_letters+string.digits
+class Task(socketserver.BaseRequestHandler):
+    def _recvall(self):
+        BUFF_SIZE = 2048
+        data = b''
+        while True:
+            part = self.request.recv(BUFF_SIZE)
+            data += part
+            if len(part) &lt; BUFF_SIZE:
+                break
+        return data.strip()
+
+    def send(self, msg, newline=True):
+        try:
+            if newline:
+                msg += b'\n'
+            self.request.sendall(msg)
+        except:
+            pass
+
+    def recv(self, prompt=b''):
+        self.send(prompt, newline=False)
+        return self._recvall()
+
+    def proof_of_work(self):
+        proof = (''.join([random.choice(table)for _ in range(20)])).encode()
+        sha = sha256(proof).hexdigest().encode()
+        self.send(b&quot;[+] sha256(XXXX+&quot; + proof[4:] + b&quot;) == &quot; + sha )
+        XXXX = self.recv(prompt = b'[+] Plz Tell Me XXXX :')
+        if len(XXXX) != 4 or sha256(XXXX + proof[4:]).hexdigest().encode() != sha:
+            return False
+        return True
+
+    def handle(self):
+        proof = self.proof_of_work()
+        if not proof:
+            self.request.close()
+        counts = 0
+        signal.alarm(60)
+        for i in range(777):
+            times = getPrime(32)
+            self.send(b'plz give me the ' + str(times).encode() + b'th (n) that satisfying (2^n-1) % 15 == 0:')
+            n = int(self.recv())
+            a , ret = check(times,n)
+            if a == True:
+                self.send(ret.encode())
+                counts += 1
+            else:
+                self.send(ret.encode())
+        if counts == 777:
+            self.send(b'You get flag!')
+            self.send(flag)
+        else:
+            self.send(b'something wrong?')
+        self.request.close()
+
+class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
+class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):
+    pass
+
+if __name__ == &quot;__main__&quot;:
+    HOST, PORT = '0.0.0.0', 10001
+    print(&quot;HOST:POST &quot; + HOST+&quot;:&quot; + str(PORT))
+    server = ForkedServer((HOST, PORT), Task)
+    server.allow_reuse_address = True
+    server.serve_forever() 
+
+</code></pre>
 <p>要求给出 777 个 n 满足 2^n-1%15=0</p>
 <p>因为我是找规律的 发现第几个 n 就是 4 的几倍</p>
 <p>其实是 2^n-1 是 0b111111111 而 15 也是 0x1111</p>
 <p>所以找第几个 n  n 就是 4 的几倍</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> pwn <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> itertools <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">re=remote(<span class="string">&quot;node4.buuoj.cn&quot;</span>,<span class="number">29459</span>)</span><br><span class="line">re.recvuntil(<span class="string">b&#x27;XXXX+&#x27;</span>)</span><br><span class="line">e=re.recvuntil(<span class="string">b&#x27;) == &#x27;</span>).decode()[:-<span class="number">5</span>]</span><br><span class="line">f=re.recvline().decode().strip()</span><br><span class="line">table = string.ascii_letters + string.digits</span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> product(table, repeat=<span class="number">4</span>):</span><br><span class="line">    head = <span class="string">&#x27;&#x27;</span>.join(i)</span><br><span class="line">    t = hashlib.sha256((head + e).encode()).hexdigest()</span><br><span class="line">    <span class="keyword">if</span> t == f:</span><br><span class="line">        re.recvuntil(<span class="string">b&#x27;[+] Plz Tell Me XXXX :&#x27;</span>)</span><br><span class="line">        re.sendline(head.encode())</span><br><span class="line">        <span class="keyword">break</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">777</span>):</span><br><span class="line">    re.recvuntil(<span class="string">b&#x27;plz give me the &#x27;</span>)</span><br><span class="line">    n=<span class="built_in">int</span>(re.recvuntil(<span class="string">b&#x27;th (&#x27;</span>).decode()[:-<span class="number">4</span>])</span><br><span class="line">    re.recvline()</span><br><span class="line">    re.sendline(<span class="built_in">str</span>(<span class="number">4</span>*n).encode())</span><br><span class="line">    <span class="built_in">print</span>(i)</span><br><span class="line">re.interactive()</span><br></pre></td></tr></table></figure>
+<pre><code class="language-python">from pwn import *
+from itertools import *
+import string
+
+re=remote(&quot;node4.buuoj.cn&quot;,29459)
+re.recvuntil(b'XXXX+')
+e=re.recvuntil(b') == ').decode()[:-5]
+f=re.recvline().decode().strip()
+table = string.ascii_letters + string.digits
+for i in product(table, repeat=4):
+    head = ''.join(i)
+    t = hashlib.sha256((head + e).encode()).hexdigest()
+    if t == f:
+        re.recvuntil(b'[+] Plz Tell Me XXXX :')
+        re.sendline(head.encode())
+        break
+for i in range(777):
+    re.recvuntil(b'plz give me the ')
+    n=int(re.recvuntil(b'th (').decode()[:-4])
+    re.recvline()
+    re.sendline(str(4*n).encode())
+    print(i)
+re.interactive()
+</code></pre>
 <h2 id="areyouadmin"><a class="markdownIt-Anchor" href="#areyouadmin">#</a> AreYouAdmin</h2>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> Crypto.Util.number <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> hashlib <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> secret <span class="keyword">import</span> secretkey,flag,ezmath_flag</span><br><span class="line"><span class="keyword">import</span> socketserver</span><br><span class="line"><span class="keyword">import</span> os</span><br><span class="line"><span class="keyword">import</span> signal</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"><span class="keyword">assert</span> <span class="built_in">len</span>(<span class="built_in">bin</span>(secretkey)) == <span class="number">169</span></span><br><span class="line"></span><br><span class="line">table = string.ascii_letters+string.digits</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">PseudoRandomNumbersGenerators</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,seed1,seed2</span>):</span><br><span class="line">        self.state_a = seed1</span><br><span class="line">        self.state_b = seed2</span><br><span class="line">        self.a = getRandomNBitInteger(<span class="number">160</span>)</span><br><span class="line">        self.b = getRandomNBitInteger(<span class="number">160</span>)</span><br><span class="line">        self.c = getRandomNBitInteger(<span class="number">160</span>)</span><br><span class="line">        self.M = <span class="number">1</span> &lt;&lt; <span class="number">512</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetNext</span>(<span class="params">self</span>):</span><br><span class="line">        ret = (self.state_a * self.a + self.state_b * self.b + self.c) % self.M</span><br><span class="line">        self.state_a = self.state_b</span><br><span class="line">        self.state_b = ret</span><br><span class="line">        <span class="keyword">return</span> ret</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">GetSomethingUseful</span>(<span class="params">self,admin</span>):</span><br><span class="line">        <span class="keyword">if</span> admin == <span class="literal">True</span>:</span><br><span class="line">            <span class="keyword">return</span> self.a,self.b,self.c</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">return</span> <span class="string">&quot;You can&#x27;t get anything here!Get out!&quot;</span></span><br><span class="line">    </span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">choice</span>(<span class="params">self,<span class="built_in">input</span></span>):</span><br><span class="line">        length = <span class="built_in">len</span>(<span class="built_in">input</span>)</span><br><span class="line">        tmp = self.GetNext() % length</span><br><span class="line">        <span class="keyword">return</span> <span class="built_in">input</span>[tmp]</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">DigitalSignatureAlgorithm</span>:</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">__init__</span>(<span class="params">self,RANDOM</span>):</span><br><span class="line">        self.p = <span class="number">8945295668911819059540208265461979177678201229057426412681001447446107919117765962027889488459965388254641301806100385155760254966914075104367813869235667</span></span><br><span class="line">        self.q = <span class="number">4472647834455909529770104132730989588839100614528713206340500723723053959558882981013944744229982694127320650903050192577880127483457037552183906934617833</span></span><br><span class="line">        self.g = <span class="number">3</span></span><br><span class="line">        self.Random = RANDOM</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">verify</span>(<span class="params">self, m, y, sig</span>):</span><br><span class="line">        r, s = sig</span><br><span class="line">        <span class="keyword">if</span> (<span class="keyword">not</span> (<span class="number">1</span> &lt;= r &lt;= self.q - <span class="number">1</span>)) <span class="keyword">or</span> (<span class="keyword">not</span> (<span class="number">1</span> &lt;= s &lt;= self.q - <span class="number">1</span>)): </span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        z = bytes_to_long(sha256(m).digest())</span><br><span class="line">        w = inverse(s, self.q)</span><br><span class="line">        u1 = (z * w) % self.q</span><br><span class="line">        u2 = (r * w) % self.q</span><br><span class="line">        v = (<span class="built_in">pow</span>(self.g, u1, self.p) * <span class="built_in">pow</span>(y, u2, self.p)) % self.p % self.q</span><br><span class="line">        <span class="keyword">return</span> r == v</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sign</span>(<span class="params">self, m , x</span>):</span><br><span class="line">        z = bytes_to_long(sha256(m).digest())</span><br><span class="line">        <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">            k = self.Random.GetNext() % self.q </span><br><span class="line">            r = <span class="built_in">pow</span>(self.g , k, self.p) % self.q</span><br><span class="line">            s = (inverse(k, self.q) * (z + x * r)) % self.q</span><br><span class="line">            <span class="keyword">if</span> (s != <span class="number">0</span>) <span class="keyword">and</span> (r != <span class="number">0</span>) :</span><br><span class="line">                <span class="keyword">return</span> (r, s)</span><br><span class="line"></span><br><span class="line">RANDOM = PseudoRandomNumbersGenerators(getPrime(<span class="number">120</span>),getPrime(<span class="number">120</span>))</span><br><span class="line">DSA = DigitalSignatureAlgorithm(RANDOM)</span><br><span class="line">x = secretkey</span><br><span class="line">y = <span class="built_in">pow</span>(DSA.g,x,DSA.p)</span><br><span class="line"></span><br><span class="line">MENU = <span class="string">br&#x27;&#x27;&#x27;</span></span><br><span class="line"><span class="string">[S]ign.</span></span><br><span class="line"><span class="string">[V]erify(or get flag).</span></span><br><span class="line"><span class="string">[I]dentify.</span></span><br><span class="line"><span class="string">[E]xit.</span></span><br><span class="line"><span class="string">&#x27;&#x27;&#x27;</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">Task</span>(socketserver.BaseRequestHandler):</span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">_recvall</span>(<span class="params">self</span>):</span><br><span class="line">        BUFF_SIZE = <span class="number">2048</span></span><br><span class="line">        data = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">        <span class="keyword">while</span> <span class="literal">True</span>:</span><br><span class="line">            part = self.request.recv(BUFF_SIZE)</span><br><span class="line">            data += part</span><br><span class="line">            <span class="keyword">if</span> <span class="built_in">len</span>(part) &lt; BUFF_SIZE:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        <span class="keyword">return</span> data.strip()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">send</span>(<span class="params">self, msg, newline=<span class="literal">True</span></span>):</span><br><span class="line">        <span class="keyword">try</span>:</span><br><span class="line">            <span class="keyword">if</span> newline:</span><br><span class="line">                msg += <span class="string">b&#x27;\n&#x27;</span></span><br><span class="line">            self.request.sendall(msg)</span><br><span class="line">        <span class="keyword">except</span>:</span><br><span class="line">            <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">recv</span>(<span class="params">self, prompt=<span class="string">b&#x27;&#x27;</span></span>):</span><br><span class="line">        self.send(prompt, newline=<span class="literal">False</span>)</span><br><span class="line">        <span class="keyword">return</span> self._recvall()</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">proof_of_work</span>(<span class="params">self</span>):</span><br><span class="line">        proof = (<span class="string">&#x27;&#x27;</span>.join([RANDOM.choice(table)<span class="keyword">for</span> _ <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">20</span>)])).encode()</span><br><span class="line">        sha = sha256(proof).hexdigest().encode()</span><br><span class="line">        self.send(<span class="string">b&quot;[+] sha256(XXXX+&quot;</span> + proof[<span class="number">4</span>:] + <span class="string">b&quot;) == &quot;</span> + sha )</span><br><span class="line">        XXXX = self.recv(prompt = <span class="string">b&#x27;[+] Plz Tell Me XXXX :&#x27;</span>)</span><br><span class="line">        <span class="keyword">if</span> <span class="built_in">len</span>(XXXX) != <span class="number">4</span> <span class="keyword">or</span> sha256(XXXX + proof[<span class="number">4</span>:]).hexdigest().encode() != sha:</span><br><span class="line">            <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">return</span> <span class="literal">True</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">sign</span>(<span class="params">self</span>):</span><br><span class="line">        m0 = <span class="string">b&#x27;dawn&#x27;</span></span><br><span class="line">        m1 = <span class="string">b&#x27;whisper&#x27;</span></span><br><span class="line">        m2 = <span class="string">b&#x27;want flag&#x27;</span></span><br><span class="line">        sign0 = DSA.sign(m0,x)</span><br><span class="line">        sign1 = DSA.sign(m1,x)</span><br><span class="line">        sign2 = DSA.sign(m2,x)</span><br><span class="line"></span><br><span class="line">        self.send(<span class="string">b&#x27;sign of (dawn) is: &#x27;</span>      + <span class="built_in">str</span>(sign0).encode())</span><br><span class="line">        self.send(<span class="string">b&#x27;sign of (whisper) is: &#x27;</span>   + <span class="built_in">str</span>(sign1).encode())</span><br><span class="line">        self.send(<span class="string">b&#x27;sign of (want flag) is: &#x27;</span> + <span class="built_in">str</span>(sign2).encode())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">identify</span>(<span class="params">self</span>):</span><br><span class="line">        rec_key = self.recv(<span class="string">b&#x27;flag of ezmath is :&#x27;</span>)</span><br><span class="line">        ret = RANDOM.GetSomethingUseful(rec_key == ezmath_flag)</span><br><span class="line">        self.send(<span class="built_in">str</span>(ret).encode())</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">verify</span>(<span class="params">self</span>):</span><br><span class="line">        msg = self.recv(<span class="string">b&#x27;msg:&#x27;</span>)</span><br><span class="line">        r = <span class="built_in">int</span>(self.recv(<span class="string">b&#x27;r:&#x27;</span>))</span><br><span class="line">        s = <span class="built_in">int</span>(self.recv(<span class="string">b&#x27;s:&#x27;</span>))</span><br><span class="line">        sig = (r,s)</span><br><span class="line">        <span class="keyword">if</span> msg == <span class="string">b&quot;I&#x27;m Admin.Plz give me flag!&quot;</span>:</span><br><span class="line">            <span class="keyword">if</span> DSA.verify(msg,y,sig):</span><br><span class="line">                self.send(<span class="string">b&#x27;Yes Sir!Thank you Sir!&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> flag</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                self.send(<span class="string">b&#x27;Who are U?Get out!&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> <span class="literal">False</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            <span class="keyword">if</span> DSA.verify(msg,y,sig):</span><br><span class="line">                self.send(<span class="string">b&#x27;Yeah!You sign successfully!&#x27;</span>)</span><br><span class="line">                <span class="keyword">return</span> os.urandom(<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">def</span> <span class="title function_">handle</span>(<span class="params">self</span>):</span><br><span class="line">        proof = self.proof_of_work()</span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> proof:</span><br><span class="line">            self.request.close()</span><br><span class="line">        signal.alarm(<span class="number">60</span>)</span><br><span class="line">        chance = <span class="number">0</span></span><br><span class="line">        <span class="keyword">while</span> <span class="number">1</span>:</span><br><span class="line">            self.send(MENU)</span><br><span class="line">            option = self.recv(<span class="string">b&#x27;\n==plz give me your option==\n[IN]:&#x27;</span>)</span><br><span class="line">            <span class="keyword">if</span> option == <span class="string">b&#x27;S&#x27;</span>:</span><br><span class="line">                <span class="keyword">if</span> chance == <span class="number">0</span>:</span><br><span class="line">                    self.sign()</span><br><span class="line">                    chance += <span class="number">1</span></span><br><span class="line">                <span class="keyword">else</span>:</span><br><span class="line">                    self.send(<span class="string">b&#x27;ERROR! You only have one time!&#x27;</span>)</span><br><span class="line">            <span class="keyword">elif</span> option == <span class="string">b&#x27;V&#x27;</span>:</span><br><span class="line">                ret = self.verify()</span><br><span class="line">                <span class="keyword">if</span> ret :</span><br><span class="line">                    self.send(<span class="string">b&#x27;Your Flag is :&#x27;</span> + ret)</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">            <span class="keyword">elif</span> option == <span class="string">b&#x27;I&#x27;</span>:</span><br><span class="line">                self.identify()</span><br><span class="line">            <span class="keyword">else</span>:</span><br><span class="line">                <span class="keyword">break</span></span><br><span class="line">        self.request.close()</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ThreadedServer</span>(socketserver.ThreadingMixIn, socketserver.TCPServer):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> <span class="title class_">ForkedServer</span>(socketserver.ForkingMixIn, socketserver.TCPServer):</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">&quot;__main__&quot;</span>:</span><br><span class="line">    HOST, PORT = <span class="string">&#x27;0.0.0.0&#x27;</span>, <span class="number">10004</span></span><br><span class="line">    <span class="built_in">print</span>(<span class="string">&quot;HOST:POST &quot;</span> + HOST+<span class="string">&quot;:&quot;</span> + <span class="built_in">str</span>(PORT))</span><br><span class="line">    server = ForkedServer((HOST, PORT), Task)</span><br><span class="line">    server.allow_reuse_address = <span class="literal">True</span></span><br><span class="line">    server.serve_forever() </span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-python">from Crypto.Util.number import *
+from hashlib import *
+from secret import secretkey,flag,ezmath_flag
+import socketserver
+import os
+import signal
+import string
+assert len(bin(secretkey)) == 169
+
+table = string.ascii_letters+string.digits
+
+class PseudoRandomNumbersGenerators:
+    def __init__(self,seed1,seed2):
+        self.state_a = seed1
+        self.state_b = seed2
+        self.a = getRandomNBitInteger(160)
+        self.b = getRandomNBitInteger(160)
+        self.c = getRandomNBitInteger(160)
+        self.M = 1 &lt;&lt; 512
+
+    def GetNext(self):
+        ret = (self.state_a * self.a + self.state_b * self.b + self.c) % self.M
+        self.state_a = self.state_b
+        self.state_b = ret
+        return ret
+
+    def GetSomethingUseful(self,admin):
+        if admin == True:
+            return self.a,self.b,self.c
+        else:
+            return &quot;You can't get anything here!Get out!&quot;
+    
+    def choice(self,input):
+        length = len(input)
+        tmp = self.GetNext() % length
+        return input[tmp]
+
+class DigitalSignatureAlgorithm:
+    def __init__(self,RANDOM):
+        self.p = 8945295668911819059540208265461979177678201229057426412681001447446107919117765962027889488459965388254641301806100385155760254966914075104367813869235667
+        self.q = 4472647834455909529770104132730989588839100614528713206340500723723053959558882981013944744229982694127320650903050192577880127483457037552183906934617833
+        self.g = 3
+        self.Random = RANDOM
+
+    def verify(self, m, y, sig):
+        r, s = sig
+        if (not (1 &lt;= r &lt;= self.q - 1)) or (not (1 &lt;= s &lt;= self.q - 1)): 
+            return False
+        z = bytes_to_long(sha256(m).digest())
+        w = inverse(s, self.q)
+        u1 = (z * w) % self.q
+        u2 = (r * w) % self.q
+        v = (pow(self.g, u1, self.p) * pow(y, u2, self.p)) % self.p % self.q
+        return r == v
+
+    def sign(self, m , x):
+        z = bytes_to_long(sha256(m).digest())
+        while 1:
+            k = self.Random.GetNext() % self.q 
+            r = pow(self.g , k, self.p) % self.q
+            s = (inverse(k, self.q) * (z + x * r)) % self.q
+            if (s != 0) and (r != 0) :
+                return (r, s)
+
+RANDOM = PseudoRandomNumbersGenerators(getPrime(120),getPrime(120))
+DSA = DigitalSignatureAlgorithm(RANDOM)
+x = secretkey
+y = pow(DSA.g,x,DSA.p)
+
+MENU = br'''
+[S]ign.
+[V]erify(or get flag).
+[I]dentify.
+[E]xit.
+'''
+
+class Task(socketserver.BaseRequestHandler):
+    def _recvall(self):
+        BUFF_SIZE = 2048
+        data = b''
+        while True:
+            part = self.request.recv(BUFF_SIZE)
+            data += part
+            if len(part) &lt; BUFF_SIZE:
+                break
+        return data.strip()
+
+    def send(self, msg, newline=True):
+        try:
+            if newline:
+                msg += b'\n'
+            self.request.sendall(msg)
+        except:
+            pass
+
+    def recv(self, prompt=b''):
+        self.send(prompt, newline=False)
+        return self._recvall()
+
+    def proof_of_work(self):
+        proof = (''.join([RANDOM.choice(table)for _ in range(20)])).encode()
+        sha = sha256(proof).hexdigest().encode()
+        self.send(b&quot;[+] sha256(XXXX+&quot; + proof[4:] + b&quot;) == &quot; + sha )
+        XXXX = self.recv(prompt = b'[+] Plz Tell Me XXXX :')
+        if len(XXXX) != 4 or sha256(XXXX + proof[4:]).hexdigest().encode() != sha:
+            return False
+        return True
+
+    def sign(self):
+        m0 = b'dawn'
+        m1 = b'whisper'
+        m2 = b'want flag'
+        sign0 = DSA.sign(m0,x)
+        sign1 = DSA.sign(m1,x)
+        sign2 = DSA.sign(m2,x)
+
+        self.send(b'sign of (dawn) is: '      + str(sign0).encode())
+        self.send(b'sign of (whisper) is: '   + str(sign1).encode())
+        self.send(b'sign of (want flag) is: ' + str(sign2).encode())
+
+    def identify(self):
+        rec_key = self.recv(b'flag of ezmath is :')
+        ret = RANDOM.GetSomethingUseful(rec_key == ezmath_flag)
+        self.send(str(ret).encode())
+
+    def verify(self):
+        msg = self.recv(b'msg:')
+        r = int(self.recv(b'r:'))
+        s = int(self.recv(b's:'))
+        sig = (r,s)
+        if msg == b&quot;I'm Admin.Plz give me flag!&quot;:
+            if DSA.verify(msg,y,sig):
+                self.send(b'Yes Sir!Thank you Sir!')
+                return flag
+            else:
+                self.send(b'Who are U?Get out!')
+                return False
+        else:
+            if DSA.verify(msg,y,sig):
+                self.send(b'Yeah!You sign successfully!')
+                return os.urandom(32)
+
+    def handle(self):
+        proof = self.proof_of_work()
+        if not proof:
+            self.request.close()
+        signal.alarm(60)
+        chance = 0
+        while 1:
+            self.send(MENU)
+            option = self.recv(b'\n==plz give me your option==\n[IN]:')
+            if option == b'S':
+                if chance == 0:
+                    self.sign()
+                    chance += 1
+                else:
+                    self.send(b'ERROR! You only have one time!')
+            elif option == b'V':
+                ret = self.verify()
+                if ret :
+                    self.send(b'Your Flag is :' + ret)
+                break
+            elif option == b'I':
+                self.identify()
+            else:
+                break
+        self.request.close()
+
+class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
+class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):
+    pass
+
+if __name__ == &quot;__main__&quot;:
+    HOST, PORT = '0.0.0.0', 10004
+    print(&quot;HOST:POST &quot; + HOST+&quot;:&quot; + str(PORT))
+    server = ForkedServer((HOST, PORT), Task)
+    server.allow_reuse_address = True
+    server.serve_forever() 
+
+</code></pre>
 
   </div>
 
@@ -226,7 +507,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/03/02/match/%E5%8D%B7%E7%8E%8B%E6%9D%AF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipewr8iypj20zk0m8b29.jpg" title="卷王杯">
+  <a href="/2022/03/02/match/%E5%8D%B7%E7%8E%8B%E6%9D%AF/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipetv6p75j20zk0m8x6p.jpg" title="卷王杯">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> 比赛</span>
   <h3>卷王杯</h3>
@@ -236,7 +517,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/03/12/match/d%5E3ctf/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclize41wj20zk0m87gk.jpg" title="d^3ctf">
+  <a href="/2022/03/12/match/d%5E3ctf/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxp31goj20zk0m8qv5.jpg" title="d^3ctf">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 比赛</span>
   <h3>d^3ctf</h3>
@@ -381,13 +662,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

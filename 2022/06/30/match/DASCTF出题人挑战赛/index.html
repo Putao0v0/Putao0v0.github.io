@@ -115,12 +115,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciuv0socj20zk0m8qes.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclwrdwyaj20zk0m8are.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipet4bz0yj20zk0m8e81.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipevuctzzj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclxfdlttj20zk0m8npd.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm0n457cj20zk0m8e81.jpg"></li>
         </ul>
       </div>
     </header>
@@ -168,13 +168,234 @@ Putao0v0 = putao</title>
 
     <h1 id="一见如故"><a class="markdownIt-Anchor" href="#一见如故">#</a> 一见如故</h1>
 <p>又是 mt19937 系列的</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line">class Myrand():</span><br><span class="line">	def __init__(self,seed):</span><br><span class="line">		self.index = 0</span><br><span class="line">		self.isInit = 1</span><br><span class="line">		self.MT = [seed] + [0] * 623</span><br><span class="line"></span><br><span class="line">		for i in range(1,624):</span><br><span class="line">			t = 1314433253 * (self.MT[i-1] ^ (self.MT[i-1] &gt;&gt; 30)) + 1</span><br><span class="line">			self.MT[i] = t &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">	def generate(self):</span><br><span class="line">		for i in range(624):</span><br><span class="line">			y = (self.MT[i] &amp; 0x80000000) + (self.MT[(i+1)%624] &amp; 0x7fffffff)</span><br><span class="line">			self.MT[i] = self.MT[(i+397)%624] ^ (y &gt;&gt; 1)</span><br><span class="line">			if y &amp; 1:</span><br><span class="line">				self.MT[i] ^= 2567483520</span><br><span class="line"></span><br><span class="line">	def rand(self):</span><br><span class="line">		if self.index == 0:</span><br><span class="line">			self.generate()</span><br><span class="line">		y = self.MT[self.index]</span><br><span class="line">		y = y ^ self.cs2l(y, 11) ^ self.cs2l(y,15)</span><br><span class="line">		y = y ^ self.cs2r(y,7) ^ self.cs2r(y,19)</span><br><span class="line">		self.index = (self.index + 1) % 624</span><br><span class="line">		return y</span><br><span class="line"></span><br><span class="line">	def cs2l(self, y, shift):</span><br><span class="line">		return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"> </span><br><span class="line">	def cs2r(self, y, shift):</span><br><span class="line">		return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line">import os</span><br><span class="line">r = Myrand(int(os.urandom(4).hex(),16))</span><br><span class="line">out = []</span><br><span class="line"></span><br><span class="line">for i in range(624):</span><br><span class="line">	out.append(r.rand())</span><br><span class="line"></span><br><span class="line">with open(&quot;output.txt&quot;,&quot;w&quot;) as f:</span><br><span class="line">	f.write(str(out))</span><br><span class="line"></span><br><span class="line">from hashlib import md5</span><br><span class="line">flag = &#x27;flag&#123;&#x27; + md5(str(r.rand()).encode()).hexdigest() + &#x27;&#125;&#x27;</span><br><span class="line">print(flag)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>class Myrand():
+	def __init__(self,seed):
+		self.index = 0
+		self.isInit = 1
+		self.MT = [seed] + [0] * 623
+
+		for i in range(1,624):
+			t = 1314433253 * (self.MT[i-1] ^ (self.MT[i-1] &gt;&gt; 30)) + 1
+			self.MT[i] = t &amp; 0xffffffff
+
+
+	def generate(self):
+		for i in range(624):
+			y = (self.MT[i] &amp; 0x80000000) + (self.MT[(i+1)%624] &amp; 0x7fffffff)
+			self.MT[i] = self.MT[(i+397)%624] ^ (y &gt;&gt; 1)
+			if y &amp; 1:
+				self.MT[i] ^= 2567483520
+
+	def rand(self):
+		if self.index == 0:
+			self.generate()
+		y = self.MT[self.index]
+		y = y ^ self.cs2l(y, 11) ^ self.cs2l(y,15)
+		y = y ^ self.cs2r(y,7) ^ self.cs2r(y,19)
+		self.index = (self.index + 1) % 624
+		return y
+
+	def cs2l(self, y, shift):
+		return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff
+ 
+	def cs2r(self, y, shift):
+		return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff
+
+import os
+r = Myrand(int(os.urandom(4).hex(),16))
+out = []
+
+for i in range(624):
+	out.append(r.rand())
+
+with open(&quot;output.txt&quot;,&quot;w&quot;) as f:
+	f.write(str(out))
+
+from hashlib import md5
+flag = 'flag&#123;' + md5(str(r.rand()).encode()).hexdigest() + '&#125;'
+print(flag)
+
+</code></pre>
 <p>rand () 有点不一样，是循环异或，在网上找到了可逆的<span class="exturl" data-url="aHR0cHM6Ly93d3cuY25ibG9ncy5jb20vVGYxc2hDNFQvcC8xNTkyNzA2Mi5odG1s">脚本</span></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"># 破解右移</span><br><span class="line">def decrypted_first(y, key):</span><br><span class="line">    for _ in range(32):</span><br><span class="line">        y = y ^ cs2r(y, key[0]) ^ cs2r(y, key[1])</span><br><span class="line">        key = [k &lt;&lt; 1 for k in key]</span><br><span class="line">    return y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 破解左移</span><br><span class="line">def decrypted_second(y, key):</span><br><span class="line">    for _ in range(32):</span><br><span class="line">        y = y ^ cs2l(y, key[0]) ^ cs2l(y, key[1])</span><br><span class="line">        key = [k &lt;&lt; 1 for k in key]</span><br><span class="line">    return y</span><br></pre></td></tr></table></figure>
+<pre><code># 破解右移
+def decrypted_first(y, key):
+    for _ in range(32):
+        y = y ^ cs2r(y, key[0]) ^ cs2r(y, key[1])
+        key = [k &lt;&lt; 1 for k in key]
+    return y
+
+
+# 破解左移
+def decrypted_second(y, key):
+    for _ in range(32):
+        y = y ^ cs2l(y, key[0]) ^ cs2l(y, key[1])
+        key = [k &lt;&lt; 1 for k in key]
+    return y
+</code></pre>
 <p>然后就可以求了</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line">def cs2l( y, shift):</span><br><span class="line">    shift %= 32</span><br><span class="line">    return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def cs2r( y, shift):</span><br><span class="line">    shift %= 32</span><br><span class="line">    return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def aa(y):</span><br><span class="line">    y = y ^ cs2l(y, 11) ^ cs2l(y,15)</span><br><span class="line">    y = y ^ cs2r(y,7) ^ cs2r(y,19)</span><br><span class="line">    return y</span><br><span class="line"></span><br><span class="line">def decrypted_first(y, key):</span><br><span class="line">    for _ in range(32):</span><br><span class="line">        y = y ^ cs2r(y, key[0]) ^ cs2r(y, key[1])</span><br><span class="line">        key = [k &lt;&lt; 1 for k in key]</span><br><span class="line">    return y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 破解左移</span><br><span class="line">def decrypted_second(y, key):</span><br><span class="line">    for _ in range(32):</span><br><span class="line">        y = y ^ cs2l(y, key[0]) ^ cs2l(y, key[1])</span><br><span class="line">        key = [k &lt;&lt; 1 for k in key]</span><br><span class="line">    return y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">key_r=[7,19]</span><br><span class="line">key_l=[11,15]</span><br><span class="line"></span><br><span class="line">mm=[1789930006, 1667540600, 1001134734, 2771087402, 1555158361, 3802425413, 186740355, 3238827425, 3822371986, 105656880, 2147674756, 4002398195, 999630311, 1043379329, 1844438614, 1573901879, 809580137, 1920530747, 3068490029, 188533208, 2352442425, 1356383568, 2045787189, 41701596, 2897419387, 1607593844, 3662695680, 3047281611, 2550334039, 3570740927, 1611931707, 2189890620, 4237125709, 696324445, 4021392896, 1806994450, 2017807642, 2469125736, 734874395, 1366419998, 2557317677, 2318441391, 1527271185, 739939051, 403949506, 2981867143, 3479641228, 1959324850, 38609469, 1962013477, 3446172738, 1254910762, 498476574, 255458888, 3793625513, 1630158993, 2279485383, 3669744498, 1492854939, 4097328621, 3192323478, 2071597028, 630826397, 428827189, 2368696996, 3055253655, 593469606, 3076863624, 55835342, 2766583770, 154612766, 2291460996, 2457259482, 3820553176, 1285798282, 3380034060, 3785911726, 281115523, 1685346148, 346211580, 589754395, 3153381906, 133879663, 2099773182, 4085199561, 4289422268, 1845420994, 4276887982, 2578038523, 3104059048, 3840618724, 3517595196, 1437174425, 331861497, 3020629410, 3612884080, 2364533907, 650538235, 3732309667, 3952278564, 27956256, 873990544, 1106130616, 4062763861, 1345922125, 1949409112, 543740334, 2356386296, 362665448, 569292348, 2417069446, 856220117, 610337377, 3715002089, 75605257, 1359669327, 549235605, 4147201887, 828943849, 3241074648, 3798702438, 4062212606, 2292101898, 2536161810, 2058208049, 1371637722, 3537388759, 2330897706, 771687299, 1810758562, 4075266992, 3136752169, 2965867171, 1907532906, 541865577, 833813451, 912325166, 3504529207, 4146661260, 43513704, 1188055084, 1460669959, 1441372078, 965044416, 1376283370, 1008912061, 2828206579, 2979859088, 1336911334, 2267227202, 3590615152, 2027071742, 4165198949, 2476117139, 4113179387, 842152977, 3334863091, 3208261808, 2491700976, 2416025359, 909914002, 1456853392, 584405349, 3450410558, 1008058255, 2173899613, 3454522095, 852025171, 4068323283, 1835293050, 2776504669, 2896956540, 1059582696, 3355842312, 3785046506, 3150432227, 899248345, 765362151, 297765964, 1839721704, 4135076330, 3802971234, 174032740, 330869440, 806730448, 2836319408, 1204866576, 1453685093, 1780827587, 2465584847, 485334173, 2258975595, 1604958487, 3091044353, 3654969666, 3179521007, 2914051939, 3077520681, 3529930595, 91469044, 100193981, 599625224, 175812373, 730628631, 264187248, 1956283294, 3644810780, 50475246, 3129247701, 3163094393, 2355260862, 436241481, 2960675442, 507658429, 1438698679, 554120231, 3160228468, 2149714696, 3217008673, 2829426481, 2509658698, 160550864, 998344493, 3224059883, 3706071477, 4013203721, 3039203009, 1900724496, 599236194, 1909569250, 3861601181, 2563580453, 2673673488, 1811137326, 1551186191, 1335639405, 1814773819, 2487495823, 1553705944, 4152430522, 3813662590, 939620828, 837675780, 1556020329, 3795725159, 2611629000, 2383061798, 171350680, 3683361407, 2953427424, 156701361, 1394830409, 1479716728, 1663136970, 1905123702, 3880810480, 3741001193, 4195599478, 3119408159, 3345902277, 1692442050, 418072450, 466246575, 3584148391, 1286172340, 3298303405, 153813789, 251189750, 1406369637, 1255015138, 164783996, 3071333073, 2013577078, 4169783817, 67626950, 908042796, 1581987189, 2808914198, 3187755899, 4150429886, 1568391086, 2787622463, 44688232, 2752263608, 600382819, 2685059730, 2082696936, 1651886831, 3260180554, 1454325295, 339099905, 2416413405, 292264001, 224448308, 2820205760, 800750924, 1692655009, 2940110853, 3206125267, 1284023574, 188806571, 1018253822, 1218521588, 127630641, 4272005916, 1983115840, 3724335557, 1480875599, 258556015, 387690320, 3307867721, 4092260344, 411103465, 719069720, 4215323854, 4112776693, 2889404156, 3574835124, 1159298981, 2305866473, 3158909197, 2452926716, 3463698794, 4186406925, 619215353, 2136303535, 841071810, 4209975253, 1563920806, 2788664963, 2285692078, 164748453, 3260915529, 2078551236, 1108180616, 2313020701, 2711601953, 3040284072, 4061505008, 3080883125, 46794326, 2539557719, 4235587220, 3713965477, 483788504, 2241106354, 400682955, 3283095717, 1851426695, 1064000523, 972160394, 1076563962, 1753602608, 1375888517, 1174039560, 4004713212, 2778702664, 2391507606, 2502750773, 3138779242, 3696713679, 3532841104, 515077954, 2342382087, 3418303246, 1721076811, 4019877170, 3829378939, 843608060, 1700376709, 649828753, 3070886865, 3433695660, 3059502160, 216554272, 2738464975, 2474575567, 3905056712, 645624775, 94893154, 2265734034, 2278406680, 566706528, 1904629525, 1293783964, 2146173917, 811121006, 3729400006, 3517862941, 195028545, 791864928, 1645052848, 1415212344, 1820637799, 362298413, 3473886649, 452928246, 898416880, 233774116, 1645021426, 3987051044, 39196131, 121419869, 2351563057, 680652927, 857972607, 3029438980, 1229946962, 233655181, 521122864, 2183657742, 484407290, 914882001, 146950515, 1082974333, 874762514, 3422883704, 3485156975, 3435115319, 2818202953, 3586825327, 2480062760, 3425716891, 1450326644, 3016221424, 2839134064, 2757606141, 2225601033, 3015322180, 1475949095, 2911465824, 1922094339, 383821393, 4250196262, 1199207077, 1170250221, 4010073388, 3538244808, 1066047253, 3579784593, 1100739262, 442414517, 1424751121, 490632186, 77339557, 777239460, 94846550, 2041789208, 1088291027, 1088989393, 1996188731, 1922726080, 173542137, 1660633903, 42490668, 4175299400, 546941808, 389670698, 4087711464, 953403827, 2689272300, 146383210, 991964967, 589177132, 2666116981, 2742384553, 2256937027, 3362235285, 1768372794, 2301508627, 3039631246, 4029873796, 3542162044, 4011314855, 3208705188, 3093664599, 955117791, 1898323176, 481158655, 1739494699, 3999748502, 2748166481, 1468096930, 269614143, 2539058881, 2437163900, 116042410, 2888056328, 3166050770, 764018772, 2895875342, 295377743, 301081897, 3242097759, 4133492089, 121772966, 3507787903, 857540916, 1013203234, 2930783587, 160548021, 1098790273, 6930677, 377945170, 1426843203, 30674711, 4194624825, 2844475300, 4050845555, 540285564, 4153161923, 3285107975, 3804387100, 1041301233, 1372558892, 2049773675, 975400211, 1602341781, 2428168445, 727020991, 3642365909, 2995017542, 1121830157, 1135422177, 1446184945, 1954739253, 2512295081, 1243062575, 2888686736, 1345095331, 2776320960, 2520780914, 3030218952, 3507873505, 566559925, 607563266, 2760603675, 2559643053, 370523859, 4152951015, 420593291, 3641300208, 4090307006, 4030514342, 3982102048, 3448920208, 3333296945, 2890840327, 403831131, 3053314412, 3541216602, 451345357, 2160618328, 4219999429, 334887708, 303960012, 2746583794, 167680781, 2646881889, 2222628925, 1589802426, 3647326978, 4214450178, 3942275726, 1184937518, 414660795, 4279106429, 3994881863, 1665475094, 3978476438, 417885097, 1914795868, 102257118, 2758276810, 528295518, 3523517380, 721631837, 4139270503, 239587328, 1468101505, 2955694973, 244330841, 3087815728, 1829583230, 416887979, 2145765582, 324272834, 2842681465, 3300197476, 1981480955, 3111840730, 819777040, 2973685169, 414658425, 149938512, 571957804, 1917410782, 1997835257, 4207405089, 3980449531, 1117683541, 1723925501, 3325014266, 3363338245, 2344916144, 3220067359, 3726608337, 175710897, 2941327892, 1316886944, 1279444044, 610743939, 2680076058, 1001211105, 3037856246, 207632498, 2702573225, 2008747623, 1711166061, 3635886836, 2103874588, 3661613767, 3624138576, 620466897]</span><br><span class="line">MT=[]</span><br><span class="line">for i in mm:</span><br><span class="line">    MT.append(decrypted_second(decrypted_first(i,key_r),key_l))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def generate():</span><br><span class="line">    for i in range(624):</span><br><span class="line">        y = (MT[i] &amp; 0x80000000) + (MT[(i + 1) % 624] &amp; 0x7fffffff)</span><br><span class="line">        MT[i] = MT[(i + 397) % 624] ^ (y &gt;&gt; 1)</span><br><span class="line">        if y &amp; 1:</span><br><span class="line">            MT[i] ^= 2567483520</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def rand(index=0):</span><br><span class="line">    if index == 0:</span><br><span class="line">        generate()</span><br><span class="line">    y = MT[index]</span><br><span class="line">    y = y ^ cs2l(y, 11) ^ cs2l(y, 15)</span><br><span class="line">    y = y ^ cs2r(y, 7) ^ cs2r(y, 19)</span><br><span class="line">    index = (index + 1) % 624</span><br><span class="line">    return y</span><br><span class="line">from hashlib import md5</span><br><span class="line">flag = &#x27;flag&#123;&#x27; + md5(str(rand()).encode()).hexdigest() + &#x27;&#125;&#x27;</span><br><span class="line">print(flag)</span><br></pre></td></tr></table></figure>
+<pre><code>def cs2l( y, shift):
+    shift %= 32
+    return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff
+
+
+def cs2r( y, shift):
+    shift %= 32
+    return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff
+
+
+def aa(y):
+    y = y ^ cs2l(y, 11) ^ cs2l(y,15)
+    y = y ^ cs2r(y,7) ^ cs2r(y,19)
+    return y
+
+def decrypted_first(y, key):
+    for _ in range(32):
+        y = y ^ cs2r(y, key[0]) ^ cs2r(y, key[1])
+        key = [k &lt;&lt; 1 for k in key]
+    return y
+
+
+# 破解左移
+def decrypted_second(y, key):
+    for _ in range(32):
+        y = y ^ cs2l(y, key[0]) ^ cs2l(y, key[1])
+        key = [k &lt;&lt; 1 for k in key]
+    return y
+
+
+key_r=[7,19]
+key_l=[11,15]
+
+mm=[1789930006, 1667540600, 1001134734, 2771087402, 1555158361, 3802425413, 186740355, 3238827425, 3822371986, 105656880, 2147674756, 4002398195, 999630311, 1043379329, 1844438614, 1573901879, 809580137, 1920530747, 3068490029, 188533208, 2352442425, 1356383568, 2045787189, 41701596, 2897419387, 1607593844, 3662695680, 3047281611, 2550334039, 3570740927, 1611931707, 2189890620, 4237125709, 696324445, 4021392896, 1806994450, 2017807642, 2469125736, 734874395, 1366419998, 2557317677, 2318441391, 1527271185, 739939051, 403949506, 2981867143, 3479641228, 1959324850, 38609469, 1962013477, 3446172738, 1254910762, 498476574, 255458888, 3793625513, 1630158993, 2279485383, 3669744498, 1492854939, 4097328621, 3192323478, 2071597028, 630826397, 428827189, 2368696996, 3055253655, 593469606, 3076863624, 55835342, 2766583770, 154612766, 2291460996, 2457259482, 3820553176, 1285798282, 3380034060, 3785911726, 281115523, 1685346148, 346211580, 589754395, 3153381906, 133879663, 2099773182, 4085199561, 4289422268, 1845420994, 4276887982, 2578038523, 3104059048, 3840618724, 3517595196, 1437174425, 331861497, 3020629410, 3612884080, 2364533907, 650538235, 3732309667, 3952278564, 27956256, 873990544, 1106130616, 4062763861, 1345922125, 1949409112, 543740334, 2356386296, 362665448, 569292348, 2417069446, 856220117, 610337377, 3715002089, 75605257, 1359669327, 549235605, 4147201887, 828943849, 3241074648, 3798702438, 4062212606, 2292101898, 2536161810, 2058208049, 1371637722, 3537388759, 2330897706, 771687299, 1810758562, 4075266992, 3136752169, 2965867171, 1907532906, 541865577, 833813451, 912325166, 3504529207, 4146661260, 43513704, 1188055084, 1460669959, 1441372078, 965044416, 1376283370, 1008912061, 2828206579, 2979859088, 1336911334, 2267227202, 3590615152, 2027071742, 4165198949, 2476117139, 4113179387, 842152977, 3334863091, 3208261808, 2491700976, 2416025359, 909914002, 1456853392, 584405349, 3450410558, 1008058255, 2173899613, 3454522095, 852025171, 4068323283, 1835293050, 2776504669, 2896956540, 1059582696, 3355842312, 3785046506, 3150432227, 899248345, 765362151, 297765964, 1839721704, 4135076330, 3802971234, 174032740, 330869440, 806730448, 2836319408, 1204866576, 1453685093, 1780827587, 2465584847, 485334173, 2258975595, 1604958487, 3091044353, 3654969666, 3179521007, 2914051939, 3077520681, 3529930595, 91469044, 100193981, 599625224, 175812373, 730628631, 264187248, 1956283294, 3644810780, 50475246, 3129247701, 3163094393, 2355260862, 436241481, 2960675442, 507658429, 1438698679, 554120231, 3160228468, 2149714696, 3217008673, 2829426481, 2509658698, 160550864, 998344493, 3224059883, 3706071477, 4013203721, 3039203009, 1900724496, 599236194, 1909569250, 3861601181, 2563580453, 2673673488, 1811137326, 1551186191, 1335639405, 1814773819, 2487495823, 1553705944, 4152430522, 3813662590, 939620828, 837675780, 1556020329, 3795725159, 2611629000, 2383061798, 171350680, 3683361407, 2953427424, 156701361, 1394830409, 1479716728, 1663136970, 1905123702, 3880810480, 3741001193, 4195599478, 3119408159, 3345902277, 1692442050, 418072450, 466246575, 3584148391, 1286172340, 3298303405, 153813789, 251189750, 1406369637, 1255015138, 164783996, 3071333073, 2013577078, 4169783817, 67626950, 908042796, 1581987189, 2808914198, 3187755899, 4150429886, 1568391086, 2787622463, 44688232, 2752263608, 600382819, 2685059730, 2082696936, 1651886831, 3260180554, 1454325295, 339099905, 2416413405, 292264001, 224448308, 2820205760, 800750924, 1692655009, 2940110853, 3206125267, 1284023574, 188806571, 1018253822, 1218521588, 127630641, 4272005916, 1983115840, 3724335557, 1480875599, 258556015, 387690320, 3307867721, 4092260344, 411103465, 719069720, 4215323854, 4112776693, 2889404156, 3574835124, 1159298981, 2305866473, 3158909197, 2452926716, 3463698794, 4186406925, 619215353, 2136303535, 841071810, 4209975253, 1563920806, 2788664963, 2285692078, 164748453, 3260915529, 2078551236, 1108180616, 2313020701, 2711601953, 3040284072, 4061505008, 3080883125, 46794326, 2539557719, 4235587220, 3713965477, 483788504, 2241106354, 400682955, 3283095717, 1851426695, 1064000523, 972160394, 1076563962, 1753602608, 1375888517, 1174039560, 4004713212, 2778702664, 2391507606, 2502750773, 3138779242, 3696713679, 3532841104, 515077954, 2342382087, 3418303246, 1721076811, 4019877170, 3829378939, 843608060, 1700376709, 649828753, 3070886865, 3433695660, 3059502160, 216554272, 2738464975, 2474575567, 3905056712, 645624775, 94893154, 2265734034, 2278406680, 566706528, 1904629525, 1293783964, 2146173917, 811121006, 3729400006, 3517862941, 195028545, 791864928, 1645052848, 1415212344, 1820637799, 362298413, 3473886649, 452928246, 898416880, 233774116, 1645021426, 3987051044, 39196131, 121419869, 2351563057, 680652927, 857972607, 3029438980, 1229946962, 233655181, 521122864, 2183657742, 484407290, 914882001, 146950515, 1082974333, 874762514, 3422883704, 3485156975, 3435115319, 2818202953, 3586825327, 2480062760, 3425716891, 1450326644, 3016221424, 2839134064, 2757606141, 2225601033, 3015322180, 1475949095, 2911465824, 1922094339, 383821393, 4250196262, 1199207077, 1170250221, 4010073388, 3538244808, 1066047253, 3579784593, 1100739262, 442414517, 1424751121, 490632186, 77339557, 777239460, 94846550, 2041789208, 1088291027, 1088989393, 1996188731, 1922726080, 173542137, 1660633903, 42490668, 4175299400, 546941808, 389670698, 4087711464, 953403827, 2689272300, 146383210, 991964967, 589177132, 2666116981, 2742384553, 2256937027, 3362235285, 1768372794, 2301508627, 3039631246, 4029873796, 3542162044, 4011314855, 3208705188, 3093664599, 955117791, 1898323176, 481158655, 1739494699, 3999748502, 2748166481, 1468096930, 269614143, 2539058881, 2437163900, 116042410, 2888056328, 3166050770, 764018772, 2895875342, 295377743, 301081897, 3242097759, 4133492089, 121772966, 3507787903, 857540916, 1013203234, 2930783587, 160548021, 1098790273, 6930677, 377945170, 1426843203, 30674711, 4194624825, 2844475300, 4050845555, 540285564, 4153161923, 3285107975, 3804387100, 1041301233, 1372558892, 2049773675, 975400211, 1602341781, 2428168445, 727020991, 3642365909, 2995017542, 1121830157, 1135422177, 1446184945, 1954739253, 2512295081, 1243062575, 2888686736, 1345095331, 2776320960, 2520780914, 3030218952, 3507873505, 566559925, 607563266, 2760603675, 2559643053, 370523859, 4152951015, 420593291, 3641300208, 4090307006, 4030514342, 3982102048, 3448920208, 3333296945, 2890840327, 403831131, 3053314412, 3541216602, 451345357, 2160618328, 4219999429, 334887708, 303960012, 2746583794, 167680781, 2646881889, 2222628925, 1589802426, 3647326978, 4214450178, 3942275726, 1184937518, 414660795, 4279106429, 3994881863, 1665475094, 3978476438, 417885097, 1914795868, 102257118, 2758276810, 528295518, 3523517380, 721631837, 4139270503, 239587328, 1468101505, 2955694973, 244330841, 3087815728, 1829583230, 416887979, 2145765582, 324272834, 2842681465, 3300197476, 1981480955, 3111840730, 819777040, 2973685169, 414658425, 149938512, 571957804, 1917410782, 1997835257, 4207405089, 3980449531, 1117683541, 1723925501, 3325014266, 3363338245, 2344916144, 3220067359, 3726608337, 175710897, 2941327892, 1316886944, 1279444044, 610743939, 2680076058, 1001211105, 3037856246, 207632498, 2702573225, 2008747623, 1711166061, 3635886836, 2103874588, 3661613767, 3624138576, 620466897]
+MT=[]
+for i in mm:
+    MT.append(decrypted_second(decrypted_first(i,key_r),key_l))
+
+
+def generate():
+    for i in range(624):
+        y = (MT[i] &amp; 0x80000000) + (MT[(i + 1) % 624] &amp; 0x7fffffff)
+        MT[i] = MT[(i + 397) % 624] ^ (y &gt;&gt; 1)
+        if y &amp; 1:
+            MT[i] ^= 2567483520
+
+
+def rand(index=0):
+    if index == 0:
+        generate()
+    y = MT[index]
+    y = y ^ cs2l(y, 11) ^ cs2l(y, 15)
+    y = y ^ cs2r(y, 7) ^ cs2r(y, 19)
+    index = (index + 1) % 624
+    return y
+from hashlib import md5
+flag = 'flag&#123;' + md5(str(rand()).encode()).hexdigest() + '&#125;'
+print(flag)
+</code></pre>
 <h1 id="二眼情深"><a class="markdownIt-Anchor" href="#二眼情深">#</a> 二眼情深</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line">class Myrand():</span><br><span class="line">    def __init__(self, seed):</span><br><span class="line">        self.index = 0</span><br><span class="line">        self.isInit = 1</span><br><span class="line">        self.MT = [seed] + [0] * 623</span><br><span class="line"></span><br><span class="line">        for i in range(1, 624):</span><br><span class="line">            t = 2037740385 * (self.MT[i - 1] ^ (self.MT[i - 1] &gt;&gt; 30)) + 1</span><br><span class="line">            self.MT[i] = t &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line">    # print(self.MT)</span><br><span class="line"></span><br><span class="line">    def generate(self):</span><br><span class="line">        for i in range(624):</span><br><span class="line">            y = (self.MT[i] &amp; 0x80000000) + (self.MT[(i + 1) % 624] &amp; 0x7fffffff)</span><br><span class="line">            self.MT[i] = self.MT[(i + 397) % 624] ^ (y &gt;&gt; 1)</span><br><span class="line">            if y &amp; 1:</span><br><span class="line">                self.MT[i] ^= 2567483520</span><br><span class="line"></span><br><span class="line">    # print(self.MT)</span><br><span class="line">    def rand(self):</span><br><span class="line">        if self.index == 0:</span><br><span class="line">            self.generate()</span><br><span class="line">        y = self.MT[self.index]</span><br><span class="line">        y = y ^ self.cs2l(y, 11) ^ self.cs2l(y, 15)</span><br><span class="line">        y = y ^ self.cs2r(y, 7) ^ self.cs2r(y, 19)</span><br><span class="line">        self.index = (self.index + 1) % 624</span><br><span class="line">        return y</span><br><span class="line"></span><br><span class="line">    def cs2l(self, y, shift):</span><br><span class="line">        return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line">    def cs2r(self, y, shift):</span><br><span class="line">        return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">import socketserver</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Task(socketserver.BaseRequestHandler):</span><br><span class="line">    def _recvall(self):</span><br><span class="line">        BUFF_SIZE = 2048</span><br><span class="line">        data = b&#x27;&#x27;</span><br><span class="line">        while True:</span><br><span class="line">            part = self.request.recv(BUFF_SIZE)</span><br><span class="line">            data += part</span><br><span class="line">            if len(part) &lt; BUFF_SIZE:</span><br><span class="line">                break</span><br><span class="line">        return data.strip()</span><br><span class="line"></span><br><span class="line">    def send(self, msg, newline=True):</span><br><span class="line">        try:</span><br><span class="line">            if newline:</span><br><span class="line">                msg += b&#x27;\n&#x27;</span><br><span class="line">            self.request.sendall(msg)</span><br><span class="line">        except:</span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">    def recv(self, prompt):</span><br><span class="line">        self.send(prompt, newline=False)</span><br><span class="line">        return self._recvall()</span><br><span class="line"></span><br><span class="line">    def handle(self):</span><br><span class="line"></span><br><span class="line">        secret = int(os.urandom(4).hex(), 16)</span><br><span class="line">        r = Myrand(secret)</span><br><span class="line">        out = []</span><br><span class="line">        for i in range(624):</span><br><span class="line">            out.append(r.rand())</span><br><span class="line"></span><br><span class="line">        try:</span><br><span class="line">            for i in range(2):</span><br><span class="line">                a = int((self.recv(b&quot;Your &quot; + [&#x27;first&#x27;, &#x27;second&#x27;][i].encode() + b&quot; see: &quot;)).decode())</span><br><span class="line">                self.send(str(out[a % len(out)]).encode())</span><br><span class="line">                guess = int((input(&quot;You konw my secret? &quot;)).decode())</span><br><span class="line">                if guess == secret:</span><br><span class="line">                    self.send(b&quot;For you ~&quot;)</span><br><span class="line">                    flag = open(&quot;flag&quot;, &quot;rb&quot;).read()</span><br><span class="line">                    self.send(flag)</span><br><span class="line">                    exit()</span><br><span class="line">                else:</span><br><span class="line">                    self.send([&quot;Try again~ &quot;, &quot;Bye~&quot;][i].encode())</span><br><span class="line">        except Exception as e:</span><br><span class="line">            exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    HOST, PORT = &#x27;0.0.0.0&#x27;, 80</span><br><span class="line">    server = ForkedServer((HOST, PORT), Task)</span><br><span class="line">    server.allow_reuse_address = True</span><br><span class="line">    print(HOST, PORT)</span><br><span class="line">    server.serve_forever()</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>class Myrand():
+    def __init__(self, seed):
+        self.index = 0
+        self.isInit = 1
+        self.MT = [seed] + [0] * 623
+
+        for i in range(1, 624):
+            t = 2037740385 * (self.MT[i - 1] ^ (self.MT[i - 1] &gt;&gt; 30)) + 1
+            self.MT[i] = t &amp; 0xffffffff
+
+    # print(self.MT)
+
+    def generate(self):
+        for i in range(624):
+            y = (self.MT[i] &amp; 0x80000000) + (self.MT[(i + 1) % 624] &amp; 0x7fffffff)
+            self.MT[i] = self.MT[(i + 397) % 624] ^ (y &gt;&gt; 1)
+            if y &amp; 1:
+                self.MT[i] ^= 2567483520
+
+    # print(self.MT)
+    def rand(self):
+        if self.index == 0:
+            self.generate()
+        y = self.MT[self.index]
+        y = y ^ self.cs2l(y, 11) ^ self.cs2l(y, 15)
+        y = y ^ self.cs2r(y, 7) ^ self.cs2r(y, 19)
+        self.index = (self.index + 1) % 624
+        return y
+
+    def cs2l(self, y, shift):
+        return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff
+
+    def cs2r(self, y, shift):
+        return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff
+
+
+import socketserver
+import os
+
+
+class Task(socketserver.BaseRequestHandler):
+    def _recvall(self):
+        BUFF_SIZE = 2048
+        data = b''
+        while True:
+            part = self.request.recv(BUFF_SIZE)
+            data += part
+            if len(part) &lt; BUFF_SIZE:
+                break
+        return data.strip()
+
+    def send(self, msg, newline=True):
+        try:
+            if newline:
+                msg += b'\n'
+            self.request.sendall(msg)
+        except:
+            pass
+
+    def recv(self, prompt):
+        self.send(prompt, newline=False)
+        return self._recvall()
+
+    def handle(self):
+
+        secret = int(os.urandom(4).hex(), 16)
+        r = Myrand(secret)
+        out = []
+        for i in range(624):
+            out.append(r.rand())
+
+        try:
+            for i in range(2):
+                a = int((self.recv(b&quot;Your &quot; + ['first', 'second'][i].encode() + b&quot; see: &quot;)).decode())
+                self.send(str(out[a % len(out)]).encode())
+                guess = int((input(&quot;You konw my secret? &quot;)).decode())
+                if guess == secret:
+                    self.send(b&quot;For you ~&quot;)
+                    flag = open(&quot;flag&quot;, &quot;rb&quot;).read()
+                    self.send(flag)
+                    exit()
+                else:
+                    self.send([&quot;Try again~ &quot;, &quot;Bye~&quot;][i].encode())
+        except Exception as e:
+            exit()
+
+
+class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
+
+class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):
+    pass
+
+
+if __name__ == &quot;__main__&quot;:
+    HOST, PORT = '0.0.0.0', 80
+    server = ForkedServer((HOST, PORT), Task)
+    server.allow_reuse_address = True
+    print(HOST, PORT)
+    server.serve_forever()
+
+</code></pre>
 <p>交互的到两个数据，要求出 seed</p>
 <p>昨天刚做过的<span class="exturl" data-url="aHR0cHM6Ly9wdXRhby1haS5naXRodWIuaW8vMjAyMi8wNi8yOS9OUFVDVEYyMDIwLU1lcnNlbm5lLXR3aXN0ZXIv"> NPUCTF2020 Mersenne twister</span></p>
 <p>也是两个数据恢复 seed</p>
@@ -182,11 +403,123 @@ Putao0v0 = putao</title>
 <p>我们获取 s0 和 s227</p>
 <p>227+397 %624 =0</p>
 <p>然后求出 s228</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">def backtrace(cur):</span><br><span class="line">    high = 0x80000000</span><br><span class="line">    low = 0x7fffffff</span><br><span class="line">    mask = 2567483520</span><br><span class="line">    state = cur</span><br><span class="line">    tmp = state[1]^state[0]</span><br><span class="line">    if tmp &amp; high == high:</span><br><span class="line">        tmp ^= mask</span><br><span class="line">        tmp &lt;&lt;= 1</span><br><span class="line">        tmp |= 1</span><br><span class="line">    else:</span><br><span class="line">        tmp &lt;&lt;=1</span><br><span class="line">    # recover highest bit</span><br><span class="line">    state= tmp</span><br><span class="line">    return state</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>
+def backtrace(cur):
+    high = 0x80000000
+    low = 0x7fffffff
+    mask = 2567483520
+    state = cur
+    tmp = state[1]^state[0]
+    if tmp &amp; high == high:
+        tmp ^= mask
+        tmp &lt;&lt;= 1
+        tmp |= 1
+    else:
+        tmp &lt;&lt;=1
+    # recover highest bit
+    state= tmp
+    return state
+
+
+</code></pre>
 <p>再逆_init_</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">def invert_right(res,shift):</span><br><span class="line">    tmp = res</span><br><span class="line">    for i in range(32//shift):</span><br><span class="line">        res = tmp^res&gt;&gt;shift</span><br><span class="line">    return res&amp;0xFFFFFFFF</span><br><span class="line">def recover(last):</span><br><span class="line">    n = 1&lt;&lt;32</span><br><span class="line">    inv = invert(2037740385,n)</span><br><span class="line">    for i in range(228,0,-1):</span><br><span class="line">        last = ((last-i)*inv)%n</span><br><span class="line">        last = invert_right(last,30)</span><br><span class="line">    return last</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code>def invert_right(res,shift):
+    tmp = res
+    for i in range(32//shift):
+        res = tmp^res&gt;&gt;shift
+    return res&amp;0xFFFFFFFF
+def recover(last):
+    n = 1&lt;&lt;32
+    inv = invert(2037740385,n)
+    for i in range(228,0,-1):
+        last = ((last-i)*inv)%n
+        last = invert_right(last,30)
+    return last
+
+
+</code></pre>
 <p>完整 exp</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br></pre></td><td class="code"><pre><span class="line">from Crypto.Util.number import inverse</span><br><span class="line">from gmpy2 import invert</span><br><span class="line">from pwn import *</span><br><span class="line">def cs2l( y, shift):</span><br><span class="line">    shift %= 32</span><br><span class="line">    return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def cs2r( y, shift):</span><br><span class="line">    shift %= 32</span><br><span class="line">    return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">#破解右移</span><br><span class="line">def decrypted_first(y, key):</span><br><span class="line">    for _ in range(32):</span><br><span class="line">        y = y ^ cs2r(y, key[0]) ^ cs2r(y, key[1])</span><br><span class="line">        key = [k &lt;&lt; 1 for k in key]</span><br><span class="line">    return y</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"># 破解左移</span><br><span class="line">def decrypted_second(y, key):</span><br><span class="line">    for _ in range(32):</span><br><span class="line">        y = y ^ cs2l(y, key[0]) ^ cs2l(y, key[1])</span><br><span class="line">        key = [k &lt;&lt; 1 for k in key]</span><br><span class="line">    return y</span><br><span class="line"></span><br><span class="line">def backtrace(cur):</span><br><span class="line">    high = 0x80000000</span><br><span class="line">    low = 0x7fffffff</span><br><span class="line">    mask = 2567483520</span><br><span class="line">    state = cur</span><br><span class="line">    tmp = state[1]^state[0]</span><br><span class="line">    if tmp &amp; high == high:</span><br><span class="line">        tmp ^= mask</span><br><span class="line">        tmp &lt;&lt;= 1</span><br><span class="line">        tmp |= 1</span><br><span class="line">    else:</span><br><span class="line">        tmp &lt;&lt;=1</span><br><span class="line">    # recover highest bit</span><br><span class="line">    state= tmp</span><br><span class="line">    return state</span><br><span class="line">def invert_right(res,shift):</span><br><span class="line">    tmp = res</span><br><span class="line">    for i in range(32//shift):</span><br><span class="line">        res = tmp^res&gt;&gt;shift</span><br><span class="line">    return res&amp;0xFFFFFFFF</span><br><span class="line">def recover(last):</span><br><span class="line">    n = 1&lt;&lt;32</span><br><span class="line">    inv = invert(2037740385,n)</span><br><span class="line">    for i in range(228,0,-1):</span><br><span class="line">        last = ((last-1)*inv)%n</span><br><span class="line">        last = invert_right(last,30)</span><br><span class="line">    return last</span><br><span class="line">re=remote(&quot;ctf.mxx307.com&quot;, 28041)</span><br><span class="line">re.recvuntil(b&#x27;Your first see:&#x27;)</span><br><span class="line">re.sendline(b&#x27;0&#x27;)</span><br><span class="line">s=[]</span><br><span class="line">s.append(int(re.recvline().decode().strip()))</span><br><span class="line">re.recvuntil(b&#x27;You konw my secret?&#x27;)</span><br><span class="line">re.sendline(b&#x27;1&#x27;)</span><br><span class="line">re.recvuntil(b&#x27;Your second see:&#x27;)</span><br><span class="line">re.sendline(b&#x27;227&#x27;)</span><br><span class="line">s.append(int(re.recvline().decode().strip()))</span><br><span class="line"></span><br><span class="line">key_r=[7,19]</span><br><span class="line">key_l=[11,15]</span><br><span class="line">for i in range(len(s)):</span><br><span class="line">    s[i]=decrypted_second(decrypted_first(s[i],key_r),key_l)</span><br><span class="line">print(s)</span><br><span class="line">s228=backtrace(s)</span><br><span class="line">print(s228)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">seed=(recover(s228))</span><br><span class="line">print(seed)</span><br><span class="line">re.sendline(str(seed).encode())</span><br><span class="line">re.interactive()</span><br></pre></td></tr></table></figure>
+<pre><code>from Crypto.Util.number import inverse
+from gmpy2 import invert
+from pwn import *
+def cs2l( y, shift):
+    shift %= 32
+    return ((y &lt;&lt; shift) ^ (y &gt;&gt; (32 - shift))) &amp; 0xffffffff
+
+
+def cs2r( y, shift):
+    shift %= 32
+    return ((y &gt;&gt; shift) ^ (y &lt;&lt; (32 - shift))) &amp; 0xffffffff
+
+
+#破解右移
+def decrypted_first(y, key):
+    for _ in range(32):
+        y = y ^ cs2r(y, key[0]) ^ cs2r(y, key[1])
+        key = [k &lt;&lt; 1 for k in key]
+    return y
+
+
+# 破解左移
+def decrypted_second(y, key):
+    for _ in range(32):
+        y = y ^ cs2l(y, key[0]) ^ cs2l(y, key[1])
+        key = [k &lt;&lt; 1 for k in key]
+    return y
+
+def backtrace(cur):
+    high = 0x80000000
+    low = 0x7fffffff
+    mask = 2567483520
+    state = cur
+    tmp = state[1]^state[0]
+    if tmp &amp; high == high:
+        tmp ^= mask
+        tmp &lt;&lt;= 1
+        tmp |= 1
+    else:
+        tmp &lt;&lt;=1
+    # recover highest bit
+    state= tmp
+    return state
+def invert_right(res,shift):
+    tmp = res
+    for i in range(32//shift):
+        res = tmp^res&gt;&gt;shift
+    return res&amp;0xFFFFFFFF
+def recover(last):
+    n = 1&lt;&lt;32
+    inv = invert(2037740385,n)
+    for i in range(228,0,-1):
+        last = ((last-1)*inv)%n
+        last = invert_right(last,30)
+    return last
+re=remote(&quot;ctf.mxx307.com&quot;, 28041)
+re.recvuntil(b'Your first see:')
+re.sendline(b'0')
+s=[]
+s.append(int(re.recvline().decode().strip()))
+re.recvuntil(b'You konw my secret?')
+re.sendline(b'1')
+re.recvuntil(b'Your second see:')
+re.sendline(b'227')
+s.append(int(re.recvline().decode().strip()))
+
+key_r=[7,19]
+key_l=[11,15]
+for i in range(len(s)):
+    s[i]=decrypted_second(decrypted_first(s[i],key_r),key_l)
+print(s)
+s228=backtrace(s)
+print(s228)
+
+
+
+seed=(recover(s228))
+print(seed)
+re.sendline(str(seed).encode())
+re.interactive()
+</code></pre>
 
   </div>
 
@@ -238,7 +571,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/06/28/web/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxfdlttj20zk0m8npd.jpg" title="命令执行">
+  <a href="/2022/06/28/web/%E5%91%BD%E4%BB%A4%E6%89%A7%E8%A1%8C/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipexw3o58j20zk0m8e81.jpg" title="命令执行">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> WEB</span>
   <h3>命令执行</h3>
@@ -248,7 +581,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/07/06/web/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipetv6p75j20zk0m8x6p.jpg" title="文件包含">
+  <a href="/2022/07/06/web/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipex2cdtbj20zk0m8x6p.jpg" title="文件包含">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> WEB</span>
   <h3>文件包含</h3>
@@ -393,13 +726,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

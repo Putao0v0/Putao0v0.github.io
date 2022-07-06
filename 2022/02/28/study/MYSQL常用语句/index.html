@@ -74,7 +74,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>3.1k</span>
+    <span>3k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -115,12 +115,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipet8c1a2j20zk0m8kct.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclx6phq6j20zk0m8e36.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewr8iypj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicljgocqbj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicm07ih54j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicli3sbvtj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciundwu5j20zk0m8n9e.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclxxcb6rj20zk0m8b29.jpg"></li>
         </ul>
       </div>
     </header>
@@ -315,15 +315,60 @@ Putao0v0 = putao</title>
 <p>all：表示一切权限；</p>
 <p><em>.</em>：表示全部数据库</p>
 <h2 id="函数"><a class="markdownIt-Anchor" href="#函数">#</a> 函数</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE FUNCTION `func1`(`publisher` char(30)) RETURNS double</span><br><span class="line">BEGIN</span><br><span class="line">	declare price DOUBLE;</span><br><span class="line">	select avg(book.price) into price</span><br><span class="line">	from book</span><br><span class="line">	where book.publisher=publisher;</span><br><span class="line">	return price;</span><br><span class="line">END</span><br><span class="line">select func1(&#x27;机械工业出版社&#x27;)  //调用</span><br></pre></td></tr></table></figure>
+<pre><code class="language-mysql">CREATE FUNCTION `func1`(`publisher` char(30)) RETURNS double
+BEGIN
+	declare price DOUBLE;
+	select avg(book.price) into price
+	from book
+	where book.publisher=publisher;
+	return price;
+END
+select func1('机械工业出版社')  //调用
+</code></pre>
 <h2 id="存储过程"><a class="markdownIt-Anchor" href="#存储过程">#</a> 存储过程</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE `func3`(IN `reader_number` char(10),IN `book_number` char(10),OUT `s` char(100))</span><br><span class="line">BEGIN</span><br><span class="line">	select concat(&#x27;读者编号:&#x27;,reader_number,&#x27;时间:&#x27;,borrow_time) into s</span><br><span class="line">	from borrow_book</span><br><span class="line">	where borrow_book.reader_number=reader_number &amp;&amp; borrow_book.book_number=book_number;</span><br><span class="line">END</span><br><span class="line">call func3(&#x27;1002&#x27;,&#x27;1001&#x27;,@s);</span><br><span class="line">SELECT @s as s;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-mysql">CREATE PROCEDURE `func3`(IN `reader_number` char(10),IN `book_number` char(10),OUT `s` char(100))
+BEGIN
+	select concat('读者编号:',reader_number,'时间:',borrow_time) into s
+	from borrow_book
+	where borrow_book.reader_number=reader_number &amp;&amp; borrow_book.book_number=book_number;
+END
+call func3('1002','1001',@s);
+SELECT @s as s;
+
+</code></pre>
 <ul>
 <li>游标</li>
 </ul>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">CREATE PROCEDURE `func4`()</span><br><span class="line">BEGIN</span><br><span class="line">	DECLARE temp char(10);</span><br><span class="line">	DECLARE cur CURSOR for SELECT reader_number from borrow_book;//游标</span><br><span class="line">	DECLARE CONTINUE HANDLER FOR NOT FOUND SET temp = &#x27;NULL&#x27;;</span><br><span class="line">	open cur;</span><br><span class="line">	FETCH cur into temp;</span><br><span class="line">	WHILE (temp!=&#x27;NULL&#x27;) </span><br><span class="line">	DO</span><br><span class="line">	SELECT temp;</span><br><span class="line">	UPDATE reader</span><br><span class="line">	set total_borrowbook=total_borrowbook+1</span><br><span class="line">	where reader_number=temp;</span><br><span class="line">	FETCH cur into temp;</span><br><span class="line">	END WHILE;</span><br><span class="line">	close cur;</span><br><span class="line">END</span><br><span class="line">call func4();</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-mysql">CREATE PROCEDURE `func4`()
+BEGIN
+	DECLARE temp char(10);
+	DECLARE cur CURSOR for SELECT reader_number from borrow_book;//游标
+	DECLARE CONTINUE HANDLER FOR NOT FOUND SET temp = 'NULL';
+	open cur;
+	FETCH cur into temp;
+	WHILE (temp!='NULL') 
+	DO
+	SELECT temp;
+	UPDATE reader
+	set total_borrowbook=total_borrowbook+1
+	where reader_number=temp;
+	FETCH cur into temp;
+	END WHILE;
+	close cur;
+END
+call func4();
+
+</code></pre>
 <h2 id="触发器"><a class="markdownIt-Anchor" href="#触发器">#</a> 触发器</h2>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">CREATE TRIGGER number</span><br><span class="line">AFTER INSERT on o for each row</span><br><span class="line">begin</span><br><span class="line">UPDATE g</span><br><span class="line">set num=num-new.number</span><br><span class="line">where id=new.gid;</span><br><span class="line">end</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-mysql">CREATE TRIGGER number
+AFTER INSERT on o for each row
+begin
+UPDATE g
+set num=num-new.number
+where id=new.gid;
+end
+
+</code></pre>
 
   </div>
 
@@ -375,7 +420,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/02/23/crypto/pwntools/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeyhsblkj20zk0m81kx.jpg" title="pwntools">
+  <a href="/2022/02/23/crypto/pwntools/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipesrnqv3j20zk0m8ava.jpg" title="pwntools">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>pwntools</h3>
@@ -385,7 +430,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/02/28/study/vue/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciukx8a7j20zk0m8aio.jpg" title="VUE">
+  <a href="/2022/02/28/study/vue/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicmnywqgpj20zk0m8dwx.jpg" title="VUE">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> 学习</span>
   <h3>VUE</h3>
@@ -530,13 +575,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

@@ -76,7 +76,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>1.4k</span>
+    <span>1.2k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipewf5l51j20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipetfk5zwj20zk0m8e81.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclhpw3lwj20zk0m8gvw.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclh5u05ej20zk0m87df.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giph4lm9i7j20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh0m9pdj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipew28b65j20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipex2cdtbj20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclx29mstj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
         </ul>
       </div>
     </header>
@@ -169,9 +169,76 @@ Putao0v0 = putao</title>
     
 
     <h1 id="swpu-2020ecb"><a class="markdownIt-Anchor" href="#swpu-2020ecb">#</a> [SWPU 2020]ecb</h1>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line">from Crypto.Cipher import AES</span><br><span class="line">import os</span><br><span class="line">BLOCKSIZE = 16</span><br><span class="line">flag = os.environ[&#x27;FLAG&#x27;]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def pad(data):</span><br><span class="line">        pad_len = BLOCKSIZE - (len(data) % BLOCKSIZE) if  len(data) % BLOCKSIZE != 0 else 0</span><br><span class="line">        return data + chr(pad_len) * pad_len</span><br><span class="line"></span><br><span class="line">def unpad(data):</span><br><span class="line">        num = ord(data[-1])</span><br><span class="line">        return data[:-num]</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def enc(data,key):</span><br><span class="line">	cipher = AES.new(key,AES.MODE_ECB)</span><br><span class="line">	encrypt = cipher.encrypt(pad(data))</span><br><span class="line">	return encrypt</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def dec(data,key):</span><br><span class="line">	try:</span><br><span class="line">		cipher = AES.new(key,AES.MODE_ECB)</span><br><span class="line">		encrypt = cipher.decrypt(data)</span><br><span class="line">		return unpad(encrypt)</span><br><span class="line">	except:</span><br><span class="line">		exit()</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def task():</span><br><span class="line">        try:</span><br><span class="line">                key = os.urandom(16)</span><br><span class="line">                while True:</span><br><span class="line">                        plaintext = raw_input(&quot;Amazing function: &quot;).decode(&#x27;hex&#x27;)</span><br><span class="line">                        yusa = plaintext+flag</span><br><span class="line">                        print enc(yusa,key).encode(&#x27;hex&#x27;)</span><br><span class="line">        except Exception as e:</span><br><span class="line">                print str(e)</span><br><span class="line">                exit()</span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">        task()</span><br></pre></td></tr></table></figure>
+<pre><code>from Crypto.Cipher import AES
+import os
+BLOCKSIZE = 16
+flag = os.environ['FLAG']
+
+
+def pad(data):
+        pad_len = BLOCKSIZE - (len(data) % BLOCKSIZE) if  len(data) % BLOCKSIZE != 0 else 0
+        return data + chr(pad_len) * pad_len
+
+def unpad(data):
+        num = ord(data[-1])
+        return data[:-num]
+
+
+def enc(data,key):
+	cipher = AES.new(key,AES.MODE_ECB)
+	encrypt = cipher.encrypt(pad(data))
+	return encrypt
+
+
+def dec(data,key):
+	try:
+		cipher = AES.new(key,AES.MODE_ECB)
+		encrypt = cipher.decrypt(data)
+		return unpad(encrypt)
+	except:
+		exit()
+
+
+def task():
+        try:
+                key = os.urandom(16)
+                while True:
+                        plaintext = raw_input(&quot;Amazing function: &quot;).decode('hex')
+                        yusa = plaintext+flag
+                        print enc(yusa,key).encode('hex')
+        except Exception as e:
+                print str(e)
+                exit()
+if __name__ == &quot;__main__&quot;:
+        task()
+</code></pre>
 <p>可以知道他是 16 个一组进行加密的，我们可以传入 15 个 0 使 flag [0] 和 15 个 0 一起加密，然后再爆破它（0~255）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line">import binascii</span><br><span class="line"></span><br><span class="line">from Crypto.Cipher import AES</span><br><span class="line">from pwn import *</span><br><span class="line"></span><br><span class="line">re=remote(&quot;1.14.71.254&quot;,28754)</span><br><span class="line">ta=&#x27;&#x27;</span><br><span class="line">for j in range(48):</span><br><span class="line"></span><br><span class="line">    re.recvuntil(b&#x27;Amazing function: &#x27;)</span><br><span class="line">    a=binascii.hexlify(b&#x27;0&#x27;*(47-j))</span><br><span class="line">    re.sendline(a)</span><br><span class="line">    h=re.recvline().decode().strip()</span><br><span class="line"></span><br><span class="line">    for i in range(256):</span><br><span class="line">        a = binascii.hexlify(b&#x27;0&#x27;*(47-j)+ta.encode()+chr(i).encode())</span><br><span class="line">        re.recvuntil(b&#x27;Amazing function: &#x27;)</span><br><span class="line">        re.sendline(a)</span><br><span class="line">        x = re.recvline().decode().strip()</span><br><span class="line">        if(x[64:96]==h[64:96]):</span><br><span class="line">            ta+=chr(i)</span><br><span class="line">            print(ta)</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">re.interactive()</span><br></pre></td></tr></table></figure>
+<pre><code>import binascii
+
+from Crypto.Cipher import AES
+from pwn import *
+
+re=remote(&quot;1.14.71.254&quot;,28754)
+ta=''
+for j in range(48):
+
+    re.recvuntil(b'Amazing function: ')
+    a=binascii.hexlify(b'0'*(47-j))
+    re.sendline(a)
+    h=re.recvline().decode().strip()
+
+    for i in range(256):
+        a = binascii.hexlify(b'0'*(47-j)+ta.encode()+chr(i).encode())
+        re.recvuntil(b'Amazing function: ')
+        re.sendline(a)
+        x = re.recvline().decode().strip()
+        if(x[64:96]==h[64:96]):
+            ta+=chr(i)
+            print(ta)
+            break
+
+re.interactive()
+</code></pre>
 
       <div class="tags">
           <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"><i class="ic i-tag"></i> 刷题</a>
@@ -226,7 +293,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/07/06/crypto/2022-07-04-n1AES/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipesrnqv3j20zk0m8ava.jpg" title="n1AES">
+  <a href="/2022/07/06/crypto/2022-07-04-n1AES/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitspjpbj20zk0m81ky.jpg" title="n1AES">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>n1AES</h3>
@@ -371,13 +438,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

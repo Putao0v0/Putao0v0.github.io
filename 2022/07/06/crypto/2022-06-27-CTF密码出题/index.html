@@ -76,7 +76,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>2.2k</span>
+    <span>2k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -117,12 +117,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclga70tsj20zk0m84mr.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclflwv2aj20zk0m84qp.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giciryrr3rj20zk0m8nhk.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclgi503lj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclh3brzpj20zk0m8ann.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicmnywqgpj20zk0m8dwx.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclip4jbpj20zk0m87cv.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeu7txpzj20zk0m81kx.jpg"></li>
         </ul>
       </div>
     </header>
@@ -171,11 +171,90 @@ Putao0v0 = putao</title>
     <p>参照 <span class="exturl" data-url="aHR0cHM6Ly80eHdpMTEuZ2l0aHViLmlvL3Bvc3RzLzkyMTU0M2UxLw==">https://4xwi11.github.io/posts/921543e1/</span></p>
 <h1 id="文件部署"><a class="markdownIt-Anchor" href="#文件部署">#</a> 文件部署</h1>
 <p><span class="exturl" data-url="aHR0cDovL3NlcnZlci5weQ==">server.py</span></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line">from hashlib import sha256</span><br><span class="line">import socketserver</span><br><span class="line">from secret import flag</span><br><span class="line">import signal</span><br><span class="line">import string</span><br><span class="line">import random</span><br><span class="line">import os</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class Task(socketserver.BaseRequestHandler):</span><br><span class="line">    def _recvall(self):</span><br><span class="line">        BUFF_SIZE = 2048</span><br><span class="line">        data = b&#x27;&#x27;</span><br><span class="line">        while True:</span><br><span class="line">            part = self.request.recv(BUFF_SIZE)</span><br><span class="line">            data += part</span><br><span class="line">            if len(part) &lt; BUFF_SIZE:</span><br><span class="line">                break</span><br><span class="line">        return data.strip()</span><br><span class="line"></span><br><span class="line">    def send(self, msg, newline=True):</span><br><span class="line">        try:</span><br><span class="line">            if newline:</span><br><span class="line">                msg += b&#x27;\n&#x27;</span><br><span class="line">            self.request.sendall(msg)</span><br><span class="line">        except:</span><br><span class="line">            pass</span><br><span class="line"></span><br><span class="line">    def recv(self, prompt=b&#x27;[-] &#x27;):</span><br><span class="line">        self.send(prompt, newline=False)</span><br><span class="line">        return self._recvall()</span><br><span class="line"></span><br><span class="line">    def proof_of_work(self):</span><br><span class="line">        random.seed(os.urandom(8))</span><br><span class="line">        proof = &#x27;&#x27;.join(</span><br><span class="line">            [random.choice(string.ascii_letters+string.digits) for _ in range(20)])</span><br><span class="line">        _hexdigest = sha256(proof.encode()).hexdigest()</span><br><span class="line">        self.send(f&quot;[+] sha256(XXXX+&#123;proof[4:]&#125;) == &#123;_hexdigest&#125;&quot;.encode())</span><br><span class="line">        x = self.recv(prompt=b&#x27;[+] Plz tell me XXXX: &#x27;)</span><br><span class="line">        if len(x) != 4 or sha256(x+proof[4:].encode()).hexdigest() != _hexdigest:</span><br><span class="line">            return False</span><br><span class="line">        return True</span><br><span class="line"></span><br><span class="line">    def handle(self):</span><br><span class="line">        signal.alarm(60)</span><br><span class="line">        if not self.proof_of_work():</span><br><span class="line">            self.send(b&#x27;[!] Wrong!&#x27;)</span><br><span class="line">            return</span><br><span class="line"></span><br><span class="line">        self.send(b&#x27;here is your flag&#x27;)</span><br><span class="line">        self.send(flag)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):</span><br><span class="line">    pass</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">if __name__ == &quot;__main__&quot;:</span><br><span class="line">    HOST, PORT = &#x27;0.0.0.0&#x27;, 10001</span><br><span class="line">    server = ForkedServer((HOST, PORT), Task)</span><br><span class="line">    server.allow_reuse_address = True</span><br><span class="line">    print(HOST, PORT)</span><br><span class="line">    server.serve_forever()</span><br></pre></td></tr></table></figure>
+<pre><code>from hashlib import sha256
+import socketserver
+from secret import flag
+import signal
+import string
+import random
+import os
+
+
+class Task(socketserver.BaseRequestHandler):
+    def _recvall(self):
+        BUFF_SIZE = 2048
+        data = b''
+        while True:
+            part = self.request.recv(BUFF_SIZE)
+            data += part
+            if len(part) &lt; BUFF_SIZE:
+                break
+        return data.strip()
+
+    def send(self, msg, newline=True):
+        try:
+            if newline:
+                msg += b'\n'
+            self.request.sendall(msg)
+        except:
+            pass
+
+    def recv(self, prompt=b'[-] '):
+        self.send(prompt, newline=False)
+        return self._recvall()
+
+    def proof_of_work(self):
+        random.seed(os.urandom(8))
+        proof = ''.join(
+            [random.choice(string.ascii_letters+string.digits) for _ in range(20)])
+        _hexdigest = sha256(proof.encode()).hexdigest()
+        self.send(f&quot;[+] sha256(XXXX+&#123;proof[4:]&#125;) == &#123;_hexdigest&#125;&quot;.encode())
+        x = self.recv(prompt=b'[+] Plz tell me XXXX: ')
+        if len(x) != 4 or sha256(x+proof[4:].encode()).hexdigest() != _hexdigest:
+            return False
+        return True
+
+    def handle(self):
+        signal.alarm(60)
+        if not self.proof_of_work():
+            self.send(b'[!] Wrong!')
+            return
+
+        self.send(b'here is your flag')
+        self.send(flag)
+
+
+class ThreadedServer(socketserver.ThreadingMixIn, socketserver.TCPServer):
+    pass
+
+
+class ForkedServer(socketserver.ForkingMixIn, socketserver.TCPServer):
+    pass
+
+
+if __name__ == &quot;__main__&quot;:
+    HOST, PORT = '0.0.0.0', 10001
+    server = ForkedServer((HOST, PORT), Task)
+    server.allow_reuse_address = True
+    print(HOST, PORT)
+    server.serve_forever()
+</code></pre>
 <p>Dockerfile</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">FROM python:3.8</span><br><span class="line">LABEL Description=&quot;baby_try&quot; VERSION=&#x27;1.0&#x27;</span><br><span class="line"></span><br><span class="line">COPY server.py .</span><br><span class="line">COPY secret.py .</span><br><span class="line"></span><br><span class="line">RUN chmod +x server.py</span><br><span class="line"></span><br><span class="line">EXPOSE 12345	# 仅仅是申明，没有实际用，容器都是随机映射的，这里方便编写者查看</span><br><span class="line"></span><br><span class="line">CMD [&quot;python&quot;, &quot;server.py&quot;]</span><br></pre></td></tr></table></figure>
+<pre><code>FROM python:3.8
+LABEL Description=&quot;baby_try&quot; VERSION='1.0'
+
+COPY server.py .
+COPY secret.py .
+
+RUN chmod +x server.py
+
+EXPOSE 12345	# 仅仅是申明，没有实际用，容器都是随机映射的，这里方便编写者查看
+
+CMD [&quot;python&quot;, &quot;server.py&quot;]
+</code></pre>
 <p><span class="exturl" data-url="aHR0cDovL3NlY3JldC5weQ==">secret.py</span></p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">flag=b&#x27;flag&#123;hahahahah&#125;&#x27;</span><br></pre></td></tr></table></figure>
+<pre><code>flag=b'flag&#123;hahahahah&#125;'
+</code></pre>
 <h1 id="docker部署"><a class="markdownIt-Anchor" href="#docker部署">#</a> docker 部署</h1>
 <p>下载 docker（参照菜鸟）</p>
 <p>列出镜像列表时报错， <code>Got permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get &quot;http://%2Fvar%2Frun%2Fdocker.sock/v1.24/images/json&quot;: dial unix /var/run/docker.sock: connect: permission denied </code></p>
@@ -242,7 +321,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/07/06/crypto/2022-06-22-%E9%87%8D%E5%90%88%E6%8C%87%E6%95%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeu1usa7j20zk0m8b29.jpg" title="重合指数">
+  <a href="/2022/07/06/crypto/2022-06-22-%E9%87%8D%E5%90%88%E6%8C%87%E6%95%B0/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclil3m4ej20zk0m8tn8.jpg" title="重合指数">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>重合指数</h3>
@@ -252,7 +331,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/07/06/crypto/2022-06-29-%5BNPUCTF2020%5DMersenne-twister/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipex2cdtbj20zk0m8x6p.jpg" title="NPUCTF2020 Mersenne twister">
+  <a href="/2022/07/06/crypto/2022-06-29-%5BNPUCTF2020%5DMersenne-twister/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclxfdlttj20zk0m8npd.jpg" title="NPUCTF2020 Mersenne twister">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>NPUCTF2020 Mersenne twister</h3>
@@ -397,13 +476,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

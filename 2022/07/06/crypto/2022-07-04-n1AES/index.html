@@ -76,7 +76,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>8.6k</span>
+    <span>8k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -84,7 +84,7 @@ Putao0v0 = putao</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>8 mins.</span>
+    <span>7 mins.</span>
   </span>
 </div>
 
@@ -117,12 +117,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeun65urj20zk0m81ii.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicivghyooj20zk0m8dir.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclil3m4ej20zk0m8tn8.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipevarprfj20zk0m8npd.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclfw2t96j20zk0m8x6p.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giciszlczyj20zk0m816d.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicit4jrvuj20zk0m8785.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetv6p75j20zk0m8x6p.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipey84bjtj20zk0m8hdt.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclffsa1cj20zk0m811l.jpg"></li>
         </ul>
       </div>
     </header>
@@ -170,21 +170,270 @@ Putao0v0 = putao</title>
 
     <h1 id="n1aes"><a class="markdownIt-Anchor" href="#n1aes">#</a> n1AES</h1>
 <p>看加密函数</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">def encrypt(self, plaintext):</span><br><span class="line">    self.plain_state = text2matrix(plaintext)</span><br><span class="line">    self.add_round_key(self.plain_state, self.round_keys[:4])</span><br><span class="line">    for i in range(1, 10):</span><br><span class="line">        self.round_encrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])</span><br><span class="line">    self.sub_bytes(self.plain_state)</span><br><span class="line">    self.shift_rows(self.plain_state)</span><br><span class="line">    self.add_round_key(self.plain_state, self.round_keys[40:])</span><br><span class="line"></span><br><span class="line">    return matrix2text(self.plain_state)</span><br></pre></td></tr></table></figure>
+<pre><code>    def encrypt(self, plaintext):
+        self.plain_state = text2matrix(plaintext)
+        self.add_round_key(self.plain_state, self.round_keys[:4])
+        for i in range(1, 10):
+            self.round_encrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])
+        self.sub_bytes(self.plain_state)
+        self.shift_rows(self.plain_state)
+        self.add_round_key(self.plain_state, self.round_keys[40:])
+
+        return matrix2text(self.plain_state)
+</code></pre>
 <p>那么解密函数就是</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">def decrypt(self, plaintext):</span><br><span class="line">        self.plain_state = text2matrix(plaintext)</span><br><span class="line">        self.add_round_key(self.plain_state, self.round_keys[40:])</span><br><span class="line">        self._shift_rows(self.plain_state)</span><br><span class="line">        self._sub_bytes(self.plain_state)</span><br><span class="line"></span><br><span class="line">        for i in range(9, 0,-1):</span><br><span class="line">            self.round_decrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])</span><br><span class="line">        self.add_round_key(self.plain_state, self.round_keys[:4])</span><br><span class="line"></span><br><span class="line">        return matrix2text(self.plain_state)</span><br></pre></td></tr></table></figure>
+<pre><code>    def decrypt(self, plaintext):
+            self.plain_state = text2matrix(plaintext)
+            self.add_round_key(self.plain_state, self.round_keys[40:])
+            self._shift_rows(self.plain_state)
+            self._sub_bytes(self.plain_state)
+
+            for i in range(9, 0,-1):
+                self.round_decrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])
+            self.add_round_key(self.plain_state, self.round_keys[:4])
+
+            return matrix2text(self.plain_state)
+</code></pre>
 <p>shift_rows 的逆函数</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">def _shift_rows(self, s):</span><br><span class="line">   r = [14, 12, 10, 11, 3, 2, 0, 13, 9, 5, 4, 8, 15, 1, 6, 7]</span><br><span class="line">   t = []</span><br><span class="line">   for i in xrange(4):</span><br><span class="line">       for j in xrange(4):</span><br><span class="line">           t.append(s[i][j])</span><br><span class="line">   for i in xrange(16):</span><br><span class="line">       s[i/4][i%4] = t[r.index(i)]</span><br></pre></td></tr></table></figure>
+<pre><code>    def _shift_rows(self, s):
+       r = [14, 12, 10, 11, 3, 2, 0, 13, 9, 5, 4, 8, 15, 1, 6, 7]
+       t = []
+       for i in xrange(4):
+           for j in xrange(4):
+               t.append(s[i][j])
+       for i in xrange(16):
+           s[i/4][i%4] = t[r.index(i)]
+</code></pre>
 <p>sub_bytes 的逆函数</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">def _sub_bytes(self, s):</span><br><span class="line">   for i in range(4):</span><br><span class="line">       for j in range(4):</span><br><span class="line">           s[i][j] = InvSbox[s[i][j]]</span><br></pre></td></tr></table></figure>
+<pre><code>    def _sub_bytes(self, s):
+       for i in range(4):
+           for j in range(4):
+               s[i][j] = InvSbox[s[i][j]]
+</code></pre>
 <p>round_decrypt 函数</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">def round_decrypt(self, state_matrix, key_matrix):</span><br><span class="line">   self.add_round_key(state_matrix, key_matrix)</span><br><span class="line">   self._mix_columns(state_matrix)</span><br><span class="line">   self._shift_rows(state_matrix)</span><br><span class="line">   self._sub_bytes(state_matrix)</span><br><span class="line">   </span><br><span class="line">   </span><br></pre></td></tr></table></figure>
+<pre><code>    def round_decrypt(self, state_matrix, key_matrix):
+       self.add_round_key(state_matrix, key_matrix)
+       self._mix_columns(state_matrix)
+       self._shift_rows(state_matrix)
+       self._sub_bytes(state_matrix)
+       
+       
+</code></pre>
 <p>主要是列混淆的逆函数</p>
- <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">def _mix_columns(self, s):</span><br><span class="line">   wt = [99, 214, 252, 197]</span><br><span class="line">   for i in range(4):</span><br><span class="line">       s0 = xx(s[0][i],wt[0]) ^ xx(s[1][i],wt[1]) ^ xx(s[2][i],wt[2]) ^ xx(s[3][i],wt[3])</span><br><span class="line">       s1 = xx(s[0][i],wt[1]) ^ xx(s[1][i],wt[2]) ^ xx(s[2][i],wt[3]) ^ xx(s[3][i],wt[0])</span><br><span class="line">       s2 = xx(s[0][i],wt[2]) ^ xx(s[1][i],wt[3]) ^ xx(s[2][i],wt[0]) ^ xx(s[3][i],wt[1])</span><br><span class="line">       s3 = xx(s[0][i],wt[3]) ^ xx(s[1][i],wt[0]) ^ xx(s[2][i],wt[1]) ^ xx(s[3][i],wt[2])</span><br><span class="line">       s[0][i] = s0</span><br><span class="line">       s[1][i] = s1</span><br><span class="line">       s[2][i] = s2</span><br><span class="line">       s[3][i] = s3</span><br><span class="line">       </span><br></pre></td></tr></table></figure>
+<pre><code>    def _mix_columns(self, s):
+       wt = [99, 214, 252, 197]
+       for i in range(4):
+           s0 = xx(s[0][i],wt[0]) ^ xx(s[1][i],wt[1]) ^ xx(s[2][i],wt[2]) ^ xx(s[3][i],wt[3])
+           s1 = xx(s[0][i],wt[1]) ^ xx(s[1][i],wt[2]) ^ xx(s[2][i],wt[3]) ^ xx(s[3][i],wt[0])
+           s2 = xx(s[0][i],wt[2]) ^ xx(s[1][i],wt[3]) ^ xx(s[2][i],wt[0]) ^ xx(s[3][i],wt[1])
+           s3 = xx(s[0][i],wt[3]) ^ xx(s[1][i],wt[0]) ^ xx(s[2][i],wt[1]) ^ xx(s[3][i],wt[2])
+           s[0][i] = s0
+           s[1][i] = s1
+           s[2][i] = s2
+           s[3][i] = s3
+           
+</code></pre>
 <p><strong>主要是需要算出 [3, 10, 8, 6] 在模 P 多项式 P (x) = x^8 + x^6 + x^2 + 1 下的逆</strong></p>
 <p>不太懂怎么算</p>
 <p>exp</p>
-  <figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br><span class="line">110</span><br><span class="line">111</span><br><span class="line">112</span><br><span class="line">113</span><br><span class="line">114</span><br><span class="line">115</span><br><span class="line">116</span><br><span class="line">117</span><br><span class="line">118</span><br><span class="line">119</span><br><span class="line">120</span><br><span class="line">121</span><br><span class="line">122</span><br><span class="line">123</span><br><span class="line">124</span><br><span class="line">125</span><br><span class="line">126</span><br><span class="line">127</span><br><span class="line">128</span><br><span class="line">129</span><br><span class="line">130</span><br><span class="line">131</span><br><span class="line">132</span><br><span class="line">133</span><br><span class="line">134</span><br><span class="line">135</span><br><span class="line">136</span><br><span class="line">137</span><br><span class="line">138</span><br><span class="line">139</span><br><span class="line">140</span><br><span class="line">141</span><br><span class="line">142</span><br><span class="line">143</span><br><span class="line">144</span><br><span class="line">145</span><br><span class="line">146</span><br><span class="line">147</span><br><span class="line">148</span><br><span class="line">149</span><br><span class="line">150</span><br><span class="line">151</span><br><span class="line">152</span><br><span class="line">153</span><br><span class="line">154</span><br><span class="line">155</span><br><span class="line">156</span><br><span class="line">157</span><br><span class="line">158</span><br><span class="line">159</span><br><span class="line">160</span><br><span class="line">161</span><br><span class="line">162</span><br><span class="line">163</span><br><span class="line">164</span><br><span class="line">165</span><br><span class="line">166</span><br><span class="line">167</span><br><span class="line">168</span><br><span class="line">169</span><br><span class="line">170</span><br><span class="line">171</span><br><span class="line">172</span><br><span class="line">173</span><br><span class="line">174</span><br><span class="line">175</span><br><span class="line">176</span><br><span class="line">177</span><br><span class="line">178</span><br><span class="line">179</span><br><span class="line">180</span><br><span class="line">181</span><br><span class="line">182</span><br><span class="line">183</span><br><span class="line">184</span><br><span class="line">185</span><br><span class="line">186</span><br><span class="line">187</span><br><span class="line">188</span><br><span class="line">189</span><br><span class="line">190</span><br><span class="line">191</span><br><span class="line">192</span><br><span class="line">193</span><br><span class="line">194</span><br><span class="line">195</span><br><span class="line">196</span><br><span class="line">197</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">def xor(a, b):</span><br><span class="line">    return &#x27;&#x27;.join(chr(ord(ac) ^ ord(bc)) for ac, bc in zip(a, b))</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">Sbox = (</span><br><span class="line">    0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,</span><br><span class="line">    0xCA, 0x82, 0xC9, 0x7D, 0xFA, 0x59, 0x47, 0xF0, 0xAD, 0xD4, 0xA2, 0xAF, 0x9C, 0xA4, 0x72, 0xC0,</span><br><span class="line">    0xB7, 0xFD, 0x93, 0x26, 0x36, 0x3F, 0xF7, 0xCC, 0x34, 0xA5, 0xE5, 0xF1, 0x71, 0xD8, 0x31, 0x15,</span><br><span class="line">    0x04, 0xC7, 0x23, 0xC3, 0x18, 0x96, 0x05, 0x9A, 0x07, 0x12, 0x80, 0xE2, 0xEB, 0x27, 0xB2, 0x75,</span><br><span class="line">    0x09, 0x83, 0x2C, 0x1A, 0x1B, 0x6E, 0x5A, 0xA0, 0x52, 0x3B, 0xD6, 0xB3, 0x29, 0xE3, 0x2F, 0x84,</span><br><span class="line">    0x53, 0xD1, 0x00, 0xED, 0x20, 0xFC, 0xB1, 0x5B, 0x6A, 0xCB, 0xBE, 0x39, 0x4A, 0x4C, 0x58, 0xCF,</span><br><span class="line">    0xD0, 0xEF, 0xAA, 0xFB, 0x43, 0x4D, 0x33, 0x85, 0x45, 0xF9, 0x02, 0x7F, 0x50, 0x3C, 0x9F, 0xA8,</span><br><span class="line">    0x51, 0xA3, 0x40, 0x8F, 0x92, 0x9D, 0x38, 0xF5, 0xBC, 0xB6, 0xDA, 0x21, 0x10, 0xFF, 0xF3, 0xD2,</span><br><span class="line">    0xCD, 0x0C, 0x13, 0xEC, 0x5F, 0x97, 0x44, 0x17, 0xC4, 0xA7, 0x7E, 0x3D, 0x64, 0x5D, 0x19, 0x73,</span><br><span class="line">    0x60, 0x81, 0x4F, 0xDC, 0x22, 0x2A, 0x90, 0x88, 0x46, 0xEE, 0xB8, 0x14, 0xDE, 0x5E, 0x0B, 0xDB,</span><br><span class="line">    0xE0, 0x32, 0x3A, 0x0A, 0x49, 0x06, 0x24, 0x5C, 0xC2, 0xD3, 0xAC, 0x62, 0x91, 0x95, 0xE4, 0x79,</span><br><span class="line">    0xE7, 0xC8, 0x37, 0x6D, 0x8D, 0xD5, 0x4E, 0xA9, 0x6C, 0x56, 0xF4, 0xEA, 0x65, 0x7A, 0xAE, 0x08,</span><br><span class="line">    0xBA, 0x78, 0x25, 0x2E, 0x1C, 0xA6, 0xB4, 0xC6, 0xE8, 0xDD, 0x74, 0x1F, 0x4B, 0xBD, 0x8B, 0x8A,</span><br><span class="line">    0x70, 0x3E, 0xB5, 0x66, 0x48, 0x03, 0xF6, 0x0E, 0x61, 0x35, 0x57, 0xB9, 0x86, 0xC1, 0x1D, 0x9E,</span><br><span class="line">    0xE1, 0xF8, 0x98, 0x11, 0x69, 0xD9, 0x8E, 0x94, 0x9B, 0x1E, 0x87, 0xE9, 0xCE, 0x55, 0x28, 0xDF,</span><br><span class="line">    0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line">InvSbox = (</span><br><span class="line">    0x52, 0x09, 0x6A, 0xD5, 0x30, 0x36, 0xA5, 0x38, 0xBF, 0x40, 0xA3, 0x9E, 0x81, 0xF3, 0xD7, 0xFB,</span><br><span class="line">    0x7C, 0xE3, 0x39, 0x82, 0x9B, 0x2F, 0xFF, 0x87, 0x34, 0x8E, 0x43, 0x44, 0xC4, 0xDE, 0xE9, 0xCB,</span><br><span class="line">    0x54, 0x7B, 0x94, 0x32, 0xA6, 0xC2, 0x23, 0x3D, 0xEE, 0x4C, 0x95, 0x0B, 0x42, 0xFA, 0xC3, 0x4E,</span><br><span class="line">    0x08, 0x2E, 0xA1, 0x66, 0x28, 0xD9, 0x24, 0xB2, 0x76, 0x5B, 0xA2, 0x49, 0x6D, 0x8B, 0xD1, 0x25,</span><br><span class="line">    0x72, 0xF8, 0xF6, 0x64, 0x86, 0x68, 0x98, 0x16, 0xD4, 0xA4, 0x5C, 0xCC, 0x5D, 0x65, 0xB6, 0x92,</span><br><span class="line">    0x6C, 0x70, 0x48, 0x50, 0xFD, 0xED, 0xB9, 0xDA, 0x5E, 0x15, 0x46, 0x57, 0xA7, 0x8D, 0x9D, 0x84,</span><br><span class="line">    0x90, 0xD8, 0xAB, 0x00, 0x8C, 0xBC, 0xD3, 0x0A, 0xF7, 0xE4, 0x58, 0x05, 0xB8, 0xB3, 0x45, 0x06,</span><br><span class="line">    0xD0, 0x2C, 0x1E, 0x8F, 0xCA, 0x3F, 0x0F, 0x02, 0xC1, 0xAF, 0xBD, 0x03, 0x01, 0x13, 0x8A, 0x6B,</span><br><span class="line">    0x3A, 0x91, 0x11, 0x41, 0x4F, 0x67, 0xDC, 0xEA, 0x97, 0xF2, 0xCF, 0xCE, 0xF0, 0xB4, 0xE6, 0x73,</span><br><span class="line">    0x96, 0xAC, 0x74, 0x22, 0xE7, 0xAD, 0x35, 0x85, 0xE2, 0xF9, 0x37, 0xE8, 0x1C, 0x75, 0xDF, 0x6E,</span><br><span class="line">    0x47, 0xF1, 0x1A, 0x71, 0x1D, 0x29, 0xC5, 0x89, 0x6F, 0xB7, 0x62, 0x0E, 0xAA, 0x18, 0xBE, 0x1B,</span><br><span class="line">    0xFC, 0x56, 0x3E, 0x4B, 0xC6, 0xD2, 0x79, 0x20, 0x9A, 0xDB, 0xC0, 0xFE, 0x78, 0xCD, 0x5A, 0xF4,</span><br><span class="line">    0x1F, 0xDD, 0xA8, 0x33, 0x88, 0x07, 0xC7, 0x31, 0xB1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xEC, 0x5F,</span><br><span class="line">    0x60, 0x51, 0x7F, 0xA9, 0x19, 0xB5, 0x4A, 0x0D, 0x2D, 0xE5, 0x7A, 0x9F, 0x93, 0xC9, 0x9C, 0xEF,</span><br><span class="line">    0xA0, 0xE0, 0x3B, 0x4D, 0xAE, 0x2A, 0xF5, 0xB0, 0xC8, 0xEB, 0xBB, 0x3C, 0x83, 0x53, 0x99, 0x61,</span><br><span class="line">    0x17, 0x2B, 0x04, 0x7E, 0xBA, 0x77, 0xD6, 0x26, 0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D,</span><br><span class="line">)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">xtime = lambda a: (((a &lt;&lt; 1) ^ 99) &amp; 0xFF) if (a &amp; 0x80) else (a &lt;&lt; 1)</span><br><span class="line"></span><br><span class="line">Rcon = [0x0,0x1,0x2,0x4,0x8,0x10,0x20,0x40,0x80,0x1b,0x36,0x6c,0xd8,0xab,0x4d,0x9a,0x2f,0x5e,0xbc,0x63,0xc6,0x97,0x35,0x6a,0xd4,0xb3,0x7d,0xfa,0xef,0xc5,0x91,0x39]</span><br><span class="line"></span><br><span class="line">def xx(i,j):</span><br><span class="line">    t = i</span><br><span class="line">    res = 0</span><br><span class="line">    while j != 0:</span><br><span class="line">        if j &amp; 1:</span><br><span class="line">            res ^= t</span><br><span class="line">        t = xtime(t)</span><br><span class="line">        j &gt;&gt;= 1</span><br><span class="line">    return res</span><br><span class="line"></span><br><span class="line">def text2matrix(text):</span><br><span class="line">    matrix = []</span><br><span class="line">    for i in range(16):</span><br><span class="line">        byte = ord(text[i])</span><br><span class="line">        if i % 4 == 0:</span><br><span class="line">            matrix.append([byte])</span><br><span class="line">        else:</span><br><span class="line">            matrix[i / 4].append(byte)</span><br><span class="line">    return matrix</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def matrix2text(matrix):</span><br><span class="line">    text = &#x27;&#x27;</span><br><span class="line">    for i in range(4):</span><br><span class="line">        for j in range(4):</span><br><span class="line">            text = text + chr(matrix[i][j])</span><br><span class="line">    return text</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">class N1AES:</span><br><span class="line">    def __init__(self, master_key=None):</span><br><span class="line">        if master_key:</span><br><span class="line">            self.change_key(master_key)</span><br><span class="line"></span><br><span class="line">    def change_key(self, master_key):</span><br><span class="line">        self.skey = int(master_key.encode(&#x27;hex&#x27;),16)</span><br><span class="line"></span><br><span class="line">        self.round_keys = text2matrix(master_key)</span><br><span class="line"></span><br><span class="line">        for i in range(4, 4 * 11):</span><br><span class="line">            self.round_keys.append([])</span><br><span class="line">            if i % 4 == 0:</span><br><span class="line">                byte = self.round_keys[i - 4][0] \</span><br><span class="line">                       ^ Sbox[self.round_keys[i - 1][1]] \</span><br><span class="line">                       ^ Rcon[i / 4]</span><br><span class="line">                self.round_keys[i].append(byte)</span><br><span class="line"></span><br><span class="line">                for j in range(1, 4):</span><br><span class="line">                    byte = self.round_keys[i - 4][j] \</span><br><span class="line">                           ^ Sbox[self.round_keys[i - 1][(j + 1) % 4]]</span><br><span class="line">                    self.round_keys[i].append(byte)</span><br><span class="line">            else:</span><br><span class="line">                for j in range(4):</span><br><span class="line">                    byte = self.round_keys[i - 4][j] \</span><br><span class="line">                           ^ self.round_keys[i - 1][j]</span><br><span class="line">                    self.round_keys[i].append(byte)</span><br><span class="line"></span><br><span class="line">    def encrypt(self, plaintext):</span><br><span class="line">        self.plain_state = text2matrix(plaintext)</span><br><span class="line">        self.add_round_key(self.plain_state, self.round_keys[:4])</span><br><span class="line">        for i in range(1, 10):</span><br><span class="line">            self.round_encrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])</span><br><span class="line">        self.sub_bytes(self.plain_state)</span><br><span class="line">        self.shift_rows(self.plain_state)</span><br><span class="line">        self.add_round_key(self.plain_state, self.round_keys[40:])</span><br><span class="line"></span><br><span class="line">        return matrix2text(self.plain_state)</span><br><span class="line"></span><br><span class="line">    def add_round_key(self, s, k):</span><br><span class="line">        for i in range(4):</span><br><span class="line">            for j in range(4):</span><br><span class="line">                s[i][j] ^= k[i][j]</span><br><span class="line"></span><br><span class="line">    def round_encrypt(self, state_matrix, key_matrix):</span><br><span class="line">        self.sub_bytes(state_matrix)</span><br><span class="line">        self.shift_rows(state_matrix)</span><br><span class="line">        self.mix_columns(state_matrix)</span><br><span class="line">        self.add_round_key(state_matrix, key_matrix)</span><br><span class="line"></span><br><span class="line">    def sub_bytes(self, s):</span><br><span class="line">        for i in range(4):</span><br><span class="line">            for j in range(4):</span><br><span class="line">                s[i][j] = Sbox[s[i][j]]</span><br><span class="line"></span><br><span class="line">    def shift_rows(self, s):</span><br><span class="line">        r = [14, 12, 10, 11, 3, 2, 0, 13, 9, 5, 4, 8, 15, 1, 6, 7]</span><br><span class="line">        t = []</span><br><span class="line">        for i in xrange(4):</span><br><span class="line">            for j in xrange(4):</span><br><span class="line">                t.append(s[i][j])</span><br><span class="line">        for i in xrange(16):</span><br><span class="line">            s[i/4][i%4] = t[r[i]]</span><br><span class="line"></span><br><span class="line">    def mix_columns(self, s):</span><br><span class="line">        wt = [3, 10, 8, 6]</span><br><span class="line">        for i in range(4):</span><br><span class="line">            s0 = xx(s[0][i],wt[0]) ^ xx(s[1][i],wt[1]) ^ xx(s[2][i],wt[2]) ^ xx(s[3][i],wt[3])</span><br><span class="line">            s1 = xx(s[0][i],wt[1]) ^ xx(s[1][i],wt[2]) ^ xx(s[2][i],wt[3]) ^ xx(s[3][i],wt[0])</span><br><span class="line">            s2 = xx(s[0][i],wt[2]) ^ xx(s[1][i],wt[3]) ^ xx(s[2][i],wt[0]) ^ xx(s[3][i],wt[1])</span><br><span class="line">            s3 = xx(s[0][i],wt[3]) ^ xx(s[1][i],wt[0]) ^ xx(s[2][i],wt[1]) ^ xx(s[3][i],wt[2])</span><br><span class="line">            s[0][i] = s0</span><br><span class="line">            s[1][i] = s1</span><br><span class="line">            s[2][i] = s2</span><br><span class="line">            s[3][i] = s3</span><br><span class="line">    def decrypt(self, plaintext):</span><br><span class="line">            self.plain_state = text2matrix(plaintext)</span><br><span class="line">            self.add_round_key(self.plain_state, self.round_keys[40:])</span><br><span class="line">            self._shift_rows(self.plain_state)</span><br><span class="line">            self._sub_bytes(self.plain_state)</span><br><span class="line"></span><br><span class="line">            for i in range(9, 0,-1):</span><br><span class="line">                self.round_decrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])</span><br><span class="line">            self.add_round_key(self.plain_state, self.round_keys[:4])</span><br><span class="line"></span><br><span class="line">            return matrix2text(self.plain_state)</span><br><span class="line">    def _shift_rows(self, s):</span><br><span class="line">        r = [14, 12, 10, 11, 3, 2, 0, 13, 9, 5, 4, 8, 15, 1, 6, 7]</span><br><span class="line">        t = []</span><br><span class="line">        for i in xrange(4):</span><br><span class="line">            for j in xrange(4):</span><br><span class="line">                t.append(s[i][j])</span><br><span class="line">        for i in xrange(16):</span><br><span class="line">            s[i/4][i%4] = t[r.index(i)]</span><br><span class="line">    def _sub_bytes(self, s):</span><br><span class="line">        for i in range(4):</span><br><span class="line">            for j in range(4):</span><br><span class="line">                s[i][j] = InvSbox[s[i][j]]</span><br><span class="line">    def round_decrypt(self, state_matrix, key_matrix):</span><br><span class="line">        self.add_round_key(state_matrix, key_matrix)</span><br><span class="line">        self._mix_columns(state_matrix)</span><br><span class="line">        self._shift_rows(state_matrix)</span><br><span class="line">        self._sub_bytes(state_matrix)</span><br><span class="line">    def _mix_columns(self, s):</span><br><span class="line">        wt = [99, 214, 252, 197]</span><br><span class="line">        for i in range(4):</span><br><span class="line">            s0 = xx(s[0][i],wt[0]) ^ xx(s[1][i],wt[1]) ^ xx(s[2][i],wt[2]) ^ xx(s[3][i],wt[3])</span><br><span class="line">            s1 = xx(s[0][i],wt[1]) ^ xx(s[1][i],wt[2]) ^ xx(s[2][i],wt[3]) ^ xx(s[3][i],wt[0])</span><br><span class="line">            s2 = xx(s[0][i],wt[2]) ^ xx(s[1][i],wt[3]) ^ xx(s[2][i],wt[0]) ^ xx(s[3][i],wt[1])</span><br><span class="line">            s3 = xx(s[0][i],wt[3]) ^ xx(s[1][i],wt[0]) ^ xx(s[2][i],wt[1]) ^ xx(s[3][i],wt[2])</span><br><span class="line">            s[0][i] = s0</span><br><span class="line">            s[1][i] = s1</span><br><span class="line">            s[2][i] = s2</span><br><span class="line">            s[3][i] = s3</span><br><span class="line">a = N1AES(&quot;THEAESPARTN1BOOK&quot;)</span><br><span class="line">#b = a.encrypt(flag[:16]) +  a.encrypt(flag[16:])</span><br><span class="line">b=&#x27;588aa4c53819273bd2cdd6a20de7453ca21ef63d75077daa42b30e7fad50b39f&#x27;</span><br><span class="line">b=b.decode(&#x27;hex&#x27;)</span><br><span class="line">c=a.decrypt(b[:16])+a.decrypt(b[16:])</span><br><span class="line">print(c)</span><br></pre></td></tr></table></figure>
+<pre><code>
+def xor(a, b):
+  return ''.join(chr(ord(ac) ^ ord(bc)) for ac, bc in zip(a, b))
+
+
+Sbox = (
+  0x63, 0x7C, 0x77, 0x7B, 0xF2, 0x6B, 0x6F, 0xC5, 0x30, 0x01, 0x67, 0x2B, 0xFE, 0xD7, 0xAB, 0x76,
+  0xCA, 0x82, 0xC9, 0x7D, 0xFA, 0x59, 0x47, 0xF0, 0xAD, 0xD4, 0xA2, 0xAF, 0x9C, 0xA4, 0x72, 0xC0,
+  0xB7, 0xFD, 0x93, 0x26, 0x36, 0x3F, 0xF7, 0xCC, 0x34, 0xA5, 0xE5, 0xF1, 0x71, 0xD8, 0x31, 0x15,
+  0x04, 0xC7, 0x23, 0xC3, 0x18, 0x96, 0x05, 0x9A, 0x07, 0x12, 0x80, 0xE2, 0xEB, 0x27, 0xB2, 0x75,
+  0x09, 0x83, 0x2C, 0x1A, 0x1B, 0x6E, 0x5A, 0xA0, 0x52, 0x3B, 0xD6, 0xB3, 0x29, 0xE3, 0x2F, 0x84,
+  0x53, 0xD1, 0x00, 0xED, 0x20, 0xFC, 0xB1, 0x5B, 0x6A, 0xCB, 0xBE, 0x39, 0x4A, 0x4C, 0x58, 0xCF,
+  0xD0, 0xEF, 0xAA, 0xFB, 0x43, 0x4D, 0x33, 0x85, 0x45, 0xF9, 0x02, 0x7F, 0x50, 0x3C, 0x9F, 0xA8,
+  0x51, 0xA3, 0x40, 0x8F, 0x92, 0x9D, 0x38, 0xF5, 0xBC, 0xB6, 0xDA, 0x21, 0x10, 0xFF, 0xF3, 0xD2,
+  0xCD, 0x0C, 0x13, 0xEC, 0x5F, 0x97, 0x44, 0x17, 0xC4, 0xA7, 0x7E, 0x3D, 0x64, 0x5D, 0x19, 0x73,
+  0x60, 0x81, 0x4F, 0xDC, 0x22, 0x2A, 0x90, 0x88, 0x46, 0xEE, 0xB8, 0x14, 0xDE, 0x5E, 0x0B, 0xDB,
+  0xE0, 0x32, 0x3A, 0x0A, 0x49, 0x06, 0x24, 0x5C, 0xC2, 0xD3, 0xAC, 0x62, 0x91, 0x95, 0xE4, 0x79,
+  0xE7, 0xC8, 0x37, 0x6D, 0x8D, 0xD5, 0x4E, 0xA9, 0x6C, 0x56, 0xF4, 0xEA, 0x65, 0x7A, 0xAE, 0x08,
+  0xBA, 0x78, 0x25, 0x2E, 0x1C, 0xA6, 0xB4, 0xC6, 0xE8, 0xDD, 0x74, 0x1F, 0x4B, 0xBD, 0x8B, 0x8A,
+  0x70, 0x3E, 0xB5, 0x66, 0x48, 0x03, 0xF6, 0x0E, 0x61, 0x35, 0x57, 0xB9, 0x86, 0xC1, 0x1D, 0x9E,
+  0xE1, 0xF8, 0x98, 0x11, 0x69, 0xD9, 0x8E, 0x94, 0x9B, 0x1E, 0x87, 0xE9, 0xCE, 0x55, 0x28, 0xDF,
+  0x8C, 0xA1, 0x89, 0x0D, 0xBF, 0xE6, 0x42, 0x68, 0x41, 0x99, 0x2D, 0x0F, 0xB0, 0x54, 0xBB, 0x16,
+)
+
+InvSbox = (
+  0x52, 0x09, 0x6A, 0xD5, 0x30, 0x36, 0xA5, 0x38, 0xBF, 0x40, 0xA3, 0x9E, 0x81, 0xF3, 0xD7, 0xFB,
+  0x7C, 0xE3, 0x39, 0x82, 0x9B, 0x2F, 0xFF, 0x87, 0x34, 0x8E, 0x43, 0x44, 0xC4, 0xDE, 0xE9, 0xCB,
+  0x54, 0x7B, 0x94, 0x32, 0xA6, 0xC2, 0x23, 0x3D, 0xEE, 0x4C, 0x95, 0x0B, 0x42, 0xFA, 0xC3, 0x4E,
+  0x08, 0x2E, 0xA1, 0x66, 0x28, 0xD9, 0x24, 0xB2, 0x76, 0x5B, 0xA2, 0x49, 0x6D, 0x8B, 0xD1, 0x25,
+  0x72, 0xF8, 0xF6, 0x64, 0x86, 0x68, 0x98, 0x16, 0xD4, 0xA4, 0x5C, 0xCC, 0x5D, 0x65, 0xB6, 0x92,
+  0x6C, 0x70, 0x48, 0x50, 0xFD, 0xED, 0xB9, 0xDA, 0x5E, 0x15, 0x46, 0x57, 0xA7, 0x8D, 0x9D, 0x84,
+  0x90, 0xD8, 0xAB, 0x00, 0x8C, 0xBC, 0xD3, 0x0A, 0xF7, 0xE4, 0x58, 0x05, 0xB8, 0xB3, 0x45, 0x06,
+  0xD0, 0x2C, 0x1E, 0x8F, 0xCA, 0x3F, 0x0F, 0x02, 0xC1, 0xAF, 0xBD, 0x03, 0x01, 0x13, 0x8A, 0x6B,
+  0x3A, 0x91, 0x11, 0x41, 0x4F, 0x67, 0xDC, 0xEA, 0x97, 0xF2, 0xCF, 0xCE, 0xF0, 0xB4, 0xE6, 0x73,
+  0x96, 0xAC, 0x74, 0x22, 0xE7, 0xAD, 0x35, 0x85, 0xE2, 0xF9, 0x37, 0xE8, 0x1C, 0x75, 0xDF, 0x6E,
+  0x47, 0xF1, 0x1A, 0x71, 0x1D, 0x29, 0xC5, 0x89, 0x6F, 0xB7, 0x62, 0x0E, 0xAA, 0x18, 0xBE, 0x1B,
+  0xFC, 0x56, 0x3E, 0x4B, 0xC6, 0xD2, 0x79, 0x20, 0x9A, 0xDB, 0xC0, 0xFE, 0x78, 0xCD, 0x5A, 0xF4,
+  0x1F, 0xDD, 0xA8, 0x33, 0x88, 0x07, 0xC7, 0x31, 0xB1, 0x12, 0x10, 0x59, 0x27, 0x80, 0xEC, 0x5F,
+  0x60, 0x51, 0x7F, 0xA9, 0x19, 0xB5, 0x4A, 0x0D, 0x2D, 0xE5, 0x7A, 0x9F, 0x93, 0xC9, 0x9C, 0xEF,
+  0xA0, 0xE0, 0x3B, 0x4D, 0xAE, 0x2A, 0xF5, 0xB0, 0xC8, 0xEB, 0xBB, 0x3C, 0x83, 0x53, 0x99, 0x61,
+  0x17, 0x2B, 0x04, 0x7E, 0xBA, 0x77, 0xD6, 0x26, 0xE1, 0x69, 0x14, 0x63, 0x55, 0x21, 0x0C, 0x7D,
+)
+
+
+xtime = lambda a: (((a &lt;&lt; 1) ^ 99) &amp; 0xFF) if (a &amp; 0x80) else (a &lt;&lt; 1)
+
+Rcon = [0x0,0x1,0x2,0x4,0x8,0x10,0x20,0x40,0x80,0x1b,0x36,0x6c,0xd8,0xab,0x4d,0x9a,0x2f,0x5e,0xbc,0x63,0xc6,0x97,0x35,0x6a,0xd4,0xb3,0x7d,0xfa,0xef,0xc5,0x91,0x39]
+
+def xx(i,j):
+  t = i
+  res = 0
+  while j != 0:
+      if j &amp; 1:
+          res ^= t
+      t = xtime(t)
+      j &gt;&gt;= 1
+  return res
+
+def text2matrix(text):
+  matrix = []
+  for i in range(16):
+      byte = ord(text[i])
+      if i % 4 == 0:
+          matrix.append([byte])
+      else:
+          matrix[i / 4].append(byte)
+  return matrix
+
+
+def matrix2text(matrix):
+  text = ''
+  for i in range(4):
+      for j in range(4):
+          text = text + chr(matrix[i][j])
+  return text
+
+
+class N1AES:
+  def __init__(self, master_key=None):
+      if master_key:
+          self.change_key(master_key)
+
+  def change_key(self, master_key):
+      self.skey = int(master_key.encode('hex'),16)
+
+      self.round_keys = text2matrix(master_key)
+
+      for i in range(4, 4 * 11):
+          self.round_keys.append([])
+          if i % 4 == 0:
+              byte = self.round_keys[i - 4][0] \
+                     ^ Sbox[self.round_keys[i - 1][1]] \
+                     ^ Rcon[i / 4]
+              self.round_keys[i].append(byte)
+
+              for j in range(1, 4):
+                  byte = self.round_keys[i - 4][j] \
+                         ^ Sbox[self.round_keys[i - 1][(j + 1) % 4]]
+                  self.round_keys[i].append(byte)
+          else:
+              for j in range(4):
+                  byte = self.round_keys[i - 4][j] \
+                         ^ self.round_keys[i - 1][j]
+                  self.round_keys[i].append(byte)
+
+  def encrypt(self, plaintext):
+      self.plain_state = text2matrix(plaintext)
+      self.add_round_key(self.plain_state, self.round_keys[:4])
+      for i in range(1, 10):
+          self.round_encrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])
+      self.sub_bytes(self.plain_state)
+      self.shift_rows(self.plain_state)
+      self.add_round_key(self.plain_state, self.round_keys[40:])
+
+      return matrix2text(self.plain_state)
+
+  def add_round_key(self, s, k):
+      for i in range(4):
+          for j in range(4):
+              s[i][j] ^= k[i][j]
+
+  def round_encrypt(self, state_matrix, key_matrix):
+      self.sub_bytes(state_matrix)
+      self.shift_rows(state_matrix)
+      self.mix_columns(state_matrix)
+      self.add_round_key(state_matrix, key_matrix)
+
+  def sub_bytes(self, s):
+      for i in range(4):
+          for j in range(4):
+              s[i][j] = Sbox[s[i][j]]
+
+  def shift_rows(self, s):
+      r = [14, 12, 10, 11, 3, 2, 0, 13, 9, 5, 4, 8, 15, 1, 6, 7]
+      t = []
+      for i in xrange(4):
+          for j in xrange(4):
+              t.append(s[i][j])
+      for i in xrange(16):
+          s[i/4][i%4] = t[r[i]]
+
+  def mix_columns(self, s):
+      wt = [3, 10, 8, 6]
+      for i in range(4):
+          s0 = xx(s[0][i],wt[0]) ^ xx(s[1][i],wt[1]) ^ xx(s[2][i],wt[2]) ^ xx(s[3][i],wt[3])
+          s1 = xx(s[0][i],wt[1]) ^ xx(s[1][i],wt[2]) ^ xx(s[2][i],wt[3]) ^ xx(s[3][i],wt[0])
+          s2 = xx(s[0][i],wt[2]) ^ xx(s[1][i],wt[3]) ^ xx(s[2][i],wt[0]) ^ xx(s[3][i],wt[1])
+          s3 = xx(s[0][i],wt[3]) ^ xx(s[1][i],wt[0]) ^ xx(s[2][i],wt[1]) ^ xx(s[3][i],wt[2])
+          s[0][i] = s0
+          s[1][i] = s1
+          s[2][i] = s2
+          s[3][i] = s3
+  def decrypt(self, plaintext):
+          self.plain_state = text2matrix(plaintext)
+          self.add_round_key(self.plain_state, self.round_keys[40:])
+          self._shift_rows(self.plain_state)
+          self._sub_bytes(self.plain_state)
+
+          for i in range(9, 0,-1):
+              self.round_decrypt(self.plain_state, self.round_keys[4 * i: 4 * (i + 1)])
+          self.add_round_key(self.plain_state, self.round_keys[:4])
+
+          return matrix2text(self.plain_state)
+  def _shift_rows(self, s):
+      r = [14, 12, 10, 11, 3, 2, 0, 13, 9, 5, 4, 8, 15, 1, 6, 7]
+      t = []
+      for i in xrange(4):
+          for j in xrange(4):
+              t.append(s[i][j])
+      for i in xrange(16):
+          s[i/4][i%4] = t[r.index(i)]
+  def _sub_bytes(self, s):
+      for i in range(4):
+          for j in range(4):
+              s[i][j] = InvSbox[s[i][j]]
+  def round_decrypt(self, state_matrix, key_matrix):
+      self.add_round_key(state_matrix, key_matrix)
+      self._mix_columns(state_matrix)
+      self._shift_rows(state_matrix)
+      self._sub_bytes(state_matrix)
+  def _mix_columns(self, s):
+      wt = [99, 214, 252, 197]
+      for i in range(4):
+          s0 = xx(s[0][i],wt[0]) ^ xx(s[1][i],wt[1]) ^ xx(s[2][i],wt[2]) ^ xx(s[3][i],wt[3])
+          s1 = xx(s[0][i],wt[1]) ^ xx(s[1][i],wt[2]) ^ xx(s[2][i],wt[3]) ^ xx(s[3][i],wt[0])
+          s2 = xx(s[0][i],wt[2]) ^ xx(s[1][i],wt[3]) ^ xx(s[2][i],wt[0]) ^ xx(s[3][i],wt[1])
+          s3 = xx(s[0][i],wt[3]) ^ xx(s[1][i],wt[0]) ^ xx(s[2][i],wt[1]) ^ xx(s[3][i],wt[2])
+          s[0][i] = s0
+          s[1][i] = s1
+          s[2][i] = s2
+          s[3][i] = s3
+a = N1AES(&quot;THEAESPARTN1BOOK&quot;)
+#b = a.encrypt(flag[:16]) +  a.encrypt(flag[16:])
+b='588aa4c53819273bd2cdd6a20de7453ca21ef63d75077daa42b30e7fad50b39f'
+b=b.decode('hex')
+c=a.decrypt(b[:16])+a.decrypt(b[16:])
+print(c)
+</code></pre>
 
       <div class="tags">
           <a href="/tags/%E5%88%B7%E9%A2%98/" rel="tag"><i class="ic i-tag"></i> 刷题</a>
@@ -239,7 +488,7 @@ Putao0v0 = putao</title>
     <div class="item left">
       
 
-  <a href="/2022/07/06/crypto/2022-07-04-%5B%E5%AE%89%E6%B4%B5%E6%9D%AF%202020%5Deasyaes/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipetfk5zwj20zk0m8e81.jpg" title="安洵杯 2020 easyaes">
+  <a href="/2022/07/06/crypto/2022-07-04-%5B%E5%AE%89%E6%B4%B5%E6%9D%AF%202020%5Deasyaes/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giciuja1j1j20zk0m8kjl.jpg" title="安洵杯 2020 easyaes">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>安洵杯 2020 easyaes</h3>
@@ -249,7 +498,7 @@ Putao0v0 = putao</title>
     <div class="item right">
       
 
-  <a href="/2022/07/06/crypto/2022-07-05-%5BSWPU%202020%5Decb/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipew28b65j20zk0m8hdt.jpg" title="SWPU ecb">
+  <a href="/2022/07/06/crypto/2022-07-05-%5BSWPU%202020%5Decb/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicit4jrvuj20zk0m8785.jpg" title="SWPU ecb">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>SWPU ecb</h3>
@@ -394,13 +643,13 @@ Putao0v0 = putao</title>
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>

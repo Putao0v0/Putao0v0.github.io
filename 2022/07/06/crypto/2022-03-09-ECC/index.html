@@ -76,7 +76,7 @@ Putao0v0 = putao</title>
       <i class="ic i-pen"></i>
     </span>
     <span class="text">Symbols count in article</span>
-    <span>6.2k</span>
+    <span>5.8k</span>
     <span class="text">words</span>
   </span>
   <span class="item" title="Reading time">
@@ -84,7 +84,7 @@ Putao0v0 = putao</title>
       <i class="ic i-clock"></i>
     </span>
     <span class="text">Reading time</span>
-    <span>6 mins.</span>
+    <span>5 mins.</span>
   </span>
 </div>
 
@@ -117,12 +117,12 @@ Putao0v0 = putao</title>
       </div>
       <div id="imgs" class="pjax">
         <ul>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicitzannuj20zk0m8b29.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1giclga70tsj20zk0m84mr.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipeybxm1pj20zk0m8niv.jpg"></li>
-          <li class="item" data-background-image="https://tva4.sinaimg.cn/large/6833939bly1gipev1x5e4j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclfdu6exj20zk0m87hw.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipetlbztpj20zk0m84qp.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipeu1usa7j20zk0m8b29.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gipesrnqv3j20zk0m8ava.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1giclj9410cj20zk0m8h12.jpg"></li>
+          <li class="item" data-background-image="https://tva1.sinaimg.cn/large/6833939bly1gicliwyw55j20zk0m8hdt.jpg"></li>
         </ul>
       </div>
     </header>
@@ -221,28 +221,227 @@ ECC 依赖于解决椭圆曲线离散对数问题的困难性。它的优势主�
 <p><code>6.Bob将C1、C2传给Alice</code></p>
 <p><code>7.Alice收到信息后，计算C1-kC2，结果就应该是点M C1-kC2 =(6,12)-25C2 =(6,12)-25*6G =(6,12)-2G =(6,12)-(27,27) =(6,12)+(27,2) =(3,28)</code></p>
 <p>C1-kC2=M+rK-krG=M+rkG-krG=M</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">#Sage</span><br><span class="line">a = </span><br><span class="line">b = </span><br><span class="line">p = </span><br><span class="line"></span><br><span class="line">#EllipticCurve([a1, a2, a3, a4, a6]) -- y^2+(a1)xy+(a3)y=x^3+(a2)x^2+(a4)x+(a6)</span><br><span class="line">E = EllipticCurve(GF(p), [0, 0, 0, a, b])</span><br><span class="line"></span><br><span class="line">base = E([, ])</span><br><span class="line">pub = E([, ])</span><br><span class="line"></span><br><span class="line">c1 = E([, ])</span><br><span class="line">c2 = E([, ])</span><br><span class="line"></span><br><span class="line">X = base</span><br><span class="line"></span><br><span class="line">#Bruteforce secret k</span><br><span class="line">for i in range(1, n):</span><br><span class="line">    if X == pub:</span><br><span class="line">        k = i</span><br><span class="line">        print(&quot;[+] secret k = &quot;, i)</span><br><span class="line">        break</span><br><span class="line">    else:</span><br><span class="line">        X = X + base</span><br><span class="line"></span><br><span class="line">m = c2 - (c1 * k)</span><br><span class="line"></span><br><span class="line">print(&quot;[+] x = &quot;, m[0])</span><br><span class="line">print(&quot;[+] y = &quot;, m[1])</span><br><span class="line">print(&quot;[+] x+y = &quot;, m[0] + m[1])</span><br></pre></td></tr></table></figure>
+<pre><code class="language-sage">#Sage
+a = 
+b = 
+p = 
+
+#EllipticCurve([a1, a2, a3, a4, a6]) -- y^2+(a1)xy+(a3)y=x^3+(a2)x^2+(a4)x+(a6)
+E = EllipticCurve(GF(p), [0, 0, 0, a, b])
+
+base = E([, ])
+pub = E([, ])
+
+c1 = E([, ])
+c2 = E([, ])
+
+X = base
+
+#Bruteforce secret k
+for i in range(1, n):
+    if X == pub:
+        k = i
+        print(&quot;[+] secret k = &quot;, i)
+        break
+    else:
+        X = X + base
+
+m = c2 - (c1 * k)
+
+print(&quot;[+] x = &quot;, m[0])
+print(&quot;[+] y = &quot;, m[1])
+print(&quot;[+] x+y = &quot;, m[0] + m[1])
+</code></pre>
 <h2 id="常见攻击"><a class="markdownIt-Anchor" href="#常见攻击">#</a> 常见攻击</h2>
 <ul>
 <li>Smart’s attack</li>
 </ul>
 <p>适用情况：E.order ()=p。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">p = </span><br><span class="line">A = </span><br><span class="line">B = </span><br><span class="line">E = EllipticCurve(GF(p),[A,B])</span><br><span class="line">P = E(,)</span><br><span class="line">Q = E(,)</span><br><span class="line">def SmartAttack(P,Q,p):</span><br><span class="line">    E = P.curve()</span><br><span class="line">    Eqp = EllipticCurve(Qp(p, 2), [ ZZ(t) + randint(0,p)*p for t in E.a_invariants() ])</span><br><span class="line"></span><br><span class="line">    P_Qps = Eqp.lift_x(ZZ(P.xy()[0]), all=True)</span><br><span class="line">    for P_Qp in P_Qps:</span><br><span class="line">        if GF(p)(P_Qp.xy()[1]) == P.xy()[1]:</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    Q_Qps = Eqp.lift_x(ZZ(Q.xy()[0]), all=True)</span><br><span class="line">    for Q_Qp in Q_Qps:</span><br><span class="line">        if GF(p)(Q_Qp.xy()[1]) == Q.xy()[1]:</span><br><span class="line">            break</span><br><span class="line"></span><br><span class="line">    p_times_P = p*P_Qp</span><br><span class="line">    p_times_Q = p*Q_Qp</span><br><span class="line"></span><br><span class="line">    x_P,y_P = p_times_P.xy()</span><br><span class="line">    x_Q,y_Q = p_times_Q.xy()</span><br><span class="line"></span><br><span class="line">    phi_P = -(x_P/y_P)</span><br><span class="line">    phi_Q = -(x_Q/y_Q)</span><br><span class="line">    k = phi_Q/phi_P</span><br><span class="line">    return ZZ(k)</span><br><span class="line"></span><br><span class="line">r = SmartAttack(P, Q, p)</span><br><span class="line">print(r)</span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-sage">p = 
+A = 
+B = 
+E = EllipticCurve(GF(p),[A,B])
+P = E(,)
+Q = E(,)
+def SmartAttack(P,Q,p):
+    E = P.curve()
+    Eqp = EllipticCurve(Qp(p, 2), [ ZZ(t) + randint(0,p)*p for t in E.a_invariants() ])
+
+    P_Qps = Eqp.lift_x(ZZ(P.xy()[0]), all=True)
+    for P_Qp in P_Qps:
+        if GF(p)(P_Qp.xy()[1]) == P.xy()[1]:
+            break
+
+    Q_Qps = Eqp.lift_x(ZZ(Q.xy()[0]), all=True)
+    for Q_Qp in Q_Qps:
+        if GF(p)(Q_Qp.xy()[1]) == Q.xy()[1]:
+            break
+
+    p_times_P = p*P_Qp
+    p_times_Q = p*Q_Qp
+
+    x_P,y_P = p_times_P.xy()
+    x_Q,y_Q = p_times_Q.xy()
+
+    phi_P = -(x_P/y_P)
+    phi_Q = -(x_Q/y_Q)
+    k = phi_Q/phi_P
+    return ZZ(k)
+
+r = SmartAttack(P, Q, p)
+print(r)
+
+
+</code></pre>
 <ul>
 <li>ECDLP</li>
 </ul>
 <p>ECDLP 即椭圆曲线上的离散对数问题（The Elliptic Curve Discrete Logarithm Problem）。</p>
 <p>椭圆曲线上离散对数问题 ECDLP 定义如下：给定素数 p 和椭圆曲线 E，对 Q=kP，在已知 P,Q 的情况下求出小于 p 的正整数 k。可以证明由 k 和 P 计算 Q 比较容易，而由 Q 和 P 计算 k 则比较困难。</p>
 <p>将椭圆曲线中的加法运算与离散对数中的模乘运算相对应，将椭圆曲线中的乘法运算与离散对数中的模幂运算相对应，我们就可以建立基于椭圆曲线的对应的密码体制。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">#Sage Code 1</span><br><span class="line">p = </span><br><span class="line">a = </span><br><span class="line">b = </span><br><span class="line">E = EllipticCurve(GF(p),[a,b])</span><br><span class="line">P = E(, ) </span><br><span class="line">Q = E(, ) </span><br><span class="line">k = discrete_log(Q, P, operation=&#x27;+&#x27;) </span><br><span class="line">print(k)</span><br><span class="line"></span><br><span class="line">#Sage Code 2</span><br><span class="line">p = </span><br><span class="line">a = </span><br><span class="line">b = </span><br><span class="line">E = EllipticCurve(GF(p),[a,b])</span><br><span class="line">P = E(, ) </span><br><span class="line">Q = E(, ) </span><br><span class="line">k = P.discrete_log(Q)</span><br><span class="line">print(k)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<pre><code class="language-sage">#Sage Code 1
+p = 
+a = 
+b = 
+E = EllipticCurve(GF(p),[a,b])
+P = E(, ) 
+Q = E(, ) 
+k = discrete_log(Q, P, operation='+') 
+print(k)
+
+#Sage Code 2
+p = 
+a = 
+b = 
+E = EllipticCurve(GF(p),[a,b])
+P = E(, ) 
+Q = E(, ) 
+k = P.discrete_log(Q)
+print(k)
+
+</code></pre>
 <ul>
 <li>Pohlig-Hellman 算法</li>
 </ul>
 <p>整数域中 $$y=g^x mod p$$ 里的 xx 以及椭圆曲线离散对数问题中 GK=Q 的 G 的阶 n，这样就把对应的离散对数问题转移到了每个因子条件下对应的离散对数，然后可以利用中国剩余定理进行求解。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br></pre></td><td class="code"><pre><span class="line">#Sage Code 1</span><br><span class="line">factors, exponents = zip(*factor(E.order()))</span><br><span class="line">primes = [factors[i] ^ exponents[i] for i in range(len(factors))][:-1]</span><br><span class="line">print primes</span><br><span class="line">dlogs = []</span><br><span class="line">for fac in primes:</span><br><span class="line">    t = int(int(P.order()) / int(fac))</span><br><span class="line">    dlog = discrete_log(t*Q,t*P,operation=&quot;+&quot;)</span><br><span class="line">    dlogs += [dlog]</span><br><span class="line">    print(&quot;factor: &quot;+str(fac)+&quot;, Discrete Log: &quot;+str(dlog)) #calculates discrete logarithm for each prime order</span><br><span class="line"></span><br><span class="line">l = crt(dlogs,primes)</span><br><span class="line">print(l)</span><br><span class="line"></span><br><span class="line">#Sage Code 2</span><br><span class="line">p = </span><br><span class="line">a = </span><br><span class="line">b = </span><br><span class="line">gx = </span><br><span class="line">gy = </span><br><span class="line">px = </span><br><span class="line">py = </span><br><span class="line"></span><br><span class="line">E = EllipticCurve(GF(p), [a, b])</span><br><span class="line">G = E(gx, gy)</span><br><span class="line">n = E.order()</span><br><span class="line">QA = E(px, py)</span><br><span class="line"></span><br><span class="line">factors = list(factor(n))</span><br><span class="line">m = 1</span><br><span class="line">moduli = []</span><br><span class="line">remainders = []</span><br><span class="line"></span><br><span class="line">print(f&quot;[+] Running Pohlig Hellman&quot;)</span><br><span class="line">print(factors)</span><br><span class="line"></span><br><span class="line">for i, j in factors:</span><br><span class="line">    if i &gt; 10**9:</span><br><span class="line">        print(i)</span><br><span class="line">        break</span><br><span class="line">    mod = i**j</span><br><span class="line">    g2 = G*(n//mod)</span><br><span class="line">    q2 = QA*(n//mod)</span><br><span class="line">    r = discrete_log(q2, g2, operation=&#x27;+&#x27;)</span><br><span class="line">    remainders.append(r)</span><br><span class="line">    moduli.append(mod)</span><br><span class="line">    m *= mod</span><br><span class="line"></span><br><span class="line">r = crt(remainders, moduli)</span><br><span class="line">print(r)</span><br></pre></td></tr></table></figure>
+<pre><code class="language-sage">#Sage Code 1
+factors, exponents = zip(*factor(E.order()))
+primes = [factors[i] ^ exponents[i] for i in range(len(factors))][:-1]
+print primes
+dlogs = []
+for fac in primes:
+    t = int(int(P.order()) / int(fac))
+    dlog = discrete_log(t*Q,t*P,operation=&quot;+&quot;)
+    dlogs += [dlog]
+    print(&quot;factor: &quot;+str(fac)+&quot;, Discrete Log: &quot;+str(dlog)) #calculates discrete logarithm for each prime order
+
+l = crt(dlogs,primes)
+print(l)
+
+#Sage Code 2
+p = 
+a = 
+b = 
+gx = 
+gy = 
+px = 
+py = 
+
+E = EllipticCurve(GF(p), [a, b])
+G = E(gx, gy)
+n = E.order()
+QA = E(px, py)
+
+factors = list(factor(n))
+m = 1
+moduli = []
+remainders = []
+
+print(f&quot;[+] Running Pohlig Hellman&quot;)
+print(factors)
+
+for i, j in factors:
+    if i &gt; 10**9:
+        print(i)
+        break
+    mod = i**j
+    g2 = G*(n//mod)
+    q2 = QA*(n//mod)
+    r = discrete_log(q2, g2, operation='+')
+    remainders.append(r)
+    moduli.append(mod)
+    m *= mod
+
+r = crt(remainders, moduli)
+print(r)
+</code></pre>
 <h2 id="例题"><a class="markdownIt-Anchor" href="#例题">#</a> 例题</h2>
 <p>第五空间 ecc</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">print &#x27;Try to solve the 3 ECC&#x27;</span><br><span class="line"></span><br><span class="line">from secret import flag</span><br><span class="line">from Crypto.Util.number import *</span><br><span class="line">assert(flag[:5]==&#x27;flag&#123;&#x27;)</span><br><span class="line">flag = flag[5:-1]</span><br><span class="line">num1 = bytes_to_long(flag[:7])</span><br><span class="line">num2 = bytes_to_long(flag[7:14])</span><br><span class="line">num3 = bytes_to_long(flag[14:])</span><br><span class="line"></span><br><span class="line">def ECC1(num):</span><br><span class="line">	p = 146808027458411567</span><br><span class="line">	A = 46056180</span><br><span class="line">	B = 2316783294673</span><br><span class="line">	E = EllipticCurve(GF(p),[A,B])</span><br><span class="line">	P = E.random_point() </span><br><span class="line">	Q = num*P</span><br><span class="line">	print E</span><br><span class="line">	print &#x27;P:&#x27;,P</span><br><span class="line">	print &#x27;Q:&#x27;,Q</span><br><span class="line"></span><br><span class="line">def ECC2(num):</span><br><span class="line">	p = 1256438680873352167711863680253958927079458741172412327087203</span><br><span class="line">	#import random</span><br><span class="line">	#A = random.randrange(389718923781273978681723687163812)</span><br><span class="line">	#B = random.randrange(816378675675716537126387613131232121431231)</span><br><span class="line">	A = 377999945830334462584412960368612</span><br><span class="line">	B = 604811648267717218711247799143415167229480</span><br><span class="line">	E = EllipticCurve(GF(p),[A,B])</span><br><span class="line">	P = E.random_point() </span><br><span class="line">	Q = num*P</span><br><span class="line">	print E</span><br><span class="line">	print &#x27;P:&#x27;,P</span><br><span class="line">	print &#x27;Q:&#x27;,Q</span><br><span class="line">	factors, exponents = zip(*factor(E.order()))</span><br><span class="line">	primes = [factors[i] ^ exponents[i] for i in range(len(factors))][:-1]</span><br><span class="line">	print primes</span><br><span class="line">	dlogs = []</span><br><span class="line">	for fac in primes:</span><br><span class="line">		t = int(int(P.order()) / int(fac))</span><br><span class="line">		dlog = discrete_log(t*Q,t*P,operation=&quot;+&quot;)</span><br><span class="line">		dlogs += [dlog]</span><br><span class="line">		print(&quot;factor: &quot;+str(fac)+&quot;, Discrete Log: &quot;+str(dlog)) #calculates discrete logarithm for each prime order</span><br><span class="line">	print num</span><br><span class="line">	print crt(dlogs,primes)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">def ECC3(num):</span><br><span class="line">	p = 0xd3ceec4c84af8fa5f3e9af91e00cabacaaaecec3da619400e29a25abececfdc9bd678e2708a58acb1bd15370acc39c596807dab6229dca11fd3a217510258d1b</span><br><span class="line">	A = 0x95fc77eb3119991a0022168c83eee7178e6c3eeaf75e0fdf1853b8ef4cb97a9058c271ee193b8b27938a07052f918c35eccb027b0b168b4e2566b247b91dc07</span><br><span class="line">	B = 0x926b0e42376d112ca971569a8d3b3eda12172dfb4929aea13da7f10fb81f3b96bf1e28b4a396a1fcf38d80b463582e45d06a548e0dc0d567fc668bd119c346b2</span><br><span class="line">	E = EllipticCurve(GF(p),[A,B])</span><br><span class="line">	P = E.random_point() </span><br><span class="line">	Q = num*P</span><br><span class="line">	print E</span><br><span class="line">	print &#x27;P:&#x27;,P</span><br><span class="line">	print &#x27;Q:&#x27;,Q</span><br><span class="line"></span><br><span class="line">ECC1(num1)</span><br><span class="line">print &#x27;==============&#x27;</span><br><span class="line">ECC2(num2)</span><br><span class="line">print &#x27;==============&#x27;</span><br><span class="line">ECC3(num3)</span><br></pre></td></tr></table></figure>
+<pre><code class="language-sage">print 'Try to solve the 3 ECC'
+
+from secret import flag
+from Crypto.Util.number import *
+assert(flag[:5]=='flag&#123;')
+flag = flag[5:-1]
+num1 = bytes_to_long(flag[:7])
+num2 = bytes_to_long(flag[7:14])
+num3 = bytes_to_long(flag[14:])
+
+def ECC1(num):
+	p = 146808027458411567
+	A = 46056180
+	B = 2316783294673
+	E = EllipticCurve(GF(p),[A,B])
+	P = E.random_point() 
+	Q = num*P
+	print E
+	print 'P:',P
+	print 'Q:',Q
+
+def ECC2(num):
+	p = 1256438680873352167711863680253958927079458741172412327087203
+	#import random
+	#A = random.randrange(389718923781273978681723687163812)
+	#B = random.randrange(816378675675716537126387613131232121431231)
+	A = 377999945830334462584412960368612
+	B = 604811648267717218711247799143415167229480
+	E = EllipticCurve(GF(p),[A,B])
+	P = E.random_point() 
+	Q = num*P
+	print E
+	print 'P:',P
+	print 'Q:',Q
+	factors, exponents = zip(*factor(E.order()))
+	primes = [factors[i] ^ exponents[i] for i in range(len(factors))][:-1]
+	print primes
+	dlogs = []
+	for fac in primes:
+		t = int(int(P.order()) / int(fac))
+		dlog = discrete_log(t*Q,t*P,operation=&quot;+&quot;)
+		dlogs += [dlog]
+		print(&quot;factor: &quot;+str(fac)+&quot;, Discrete Log: &quot;+str(dlog)) #calculates discrete logarithm for each prime order
+	print num
+	print crt(dlogs,primes)
+
+
+
+def ECC3(num):
+	p = 0xd3ceec4c84af8fa5f3e9af91e00cabacaaaecec3da619400e29a25abececfdc9bd678e2708a58acb1bd15370acc39c596807dab6229dca11fd3a217510258d1b
+	A = 0x95fc77eb3119991a0022168c83eee7178e6c3eeaf75e0fdf1853b8ef4cb97a9058c271ee193b8b27938a07052f918c35eccb027b0b168b4e2566b247b91dc07
+	B = 0x926b0e42376d112ca971569a8d3b3eda12172dfb4929aea13da7f10fb81f3b96bf1e28b4a396a1fcf38d80b463582e45d06a548e0dc0d567fc668bd119c346b2
+	E = EllipticCurve(GF(p),[A,B])
+	P = E.random_point() 
+	Q = num*P
+	print E
+	print 'P:',P
+	print 'Q:',Q
+
+ECC1(num1)
+print '=============='
+ECC2(num2)
+print '=============='
+ECC3(num3)
+</code></pre>
 <p>求 num1 就是 ECDLP<br>
  求 num2 是 Pohlig-Hellman 算法<br>
 求 num3 是 Smart’s attack</p>
@@ -301,7 +500,7 @@ ECC 依赖于解决椭圆曲线离散对数问题的困难性。它的优势主�
     <div class="item left">
       
 
-  <a href="/2022/07/06/web/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclh5u05ej20zk0m87df.jpg" title="文件包含">
+  <a href="/2022/07/06/web/%E6%96%87%E4%BB%B6%E5%8C%85%E5%90%AB/" itemprop="url" rel="prev" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gicitf0kl1j20zk0m87fe.jpg" title="文件包含">
   <span class="type">Previous Post</span>
   <span class="category"><i class="ic i-flag"></i> WEB</span>
   <h3>文件包含</h3>
@@ -311,7 +510,7 @@ ECC 依赖于解决椭圆曲线离散对数问题的困难性。它的优势主�
     <div class="item right">
       
 
-  <a href="/2022/07/06/crypto/2022-03-12-playfair/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva4.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1giclhtuo6nj20zk0m8ttm.jpg" title="PlayFair">
+  <a href="/2022/07/06/crypto/2022-03-12-playfair/" itemprop="url" rel="next" data-background-image="https:&#x2F;&#x2F;tva1.sinaimg.cn&#x2F;mw690&#x2F;6833939bly1gipeun65urj20zk0m81ii.jpg" title="PlayFair">
   <span class="type">Next Post</span>
   <span class="category"><i class="ic i-flag"></i> CRYPTO</span>
   <h3>PlayFair</h3>
@@ -456,13 +655,13 @@ ECC 依赖于解决椭圆曲线离散对数问题的困难性。它的优势主�
     <span class="post-meta-item-icon">
       <i class="ic i-chart-area"></i>
     </span>
-    <span title="Symbols count total">251k words</span>
+    <span title="Symbols count total">240k words</span>
 
     <span class="post-meta-divider">|</span>
     <span class="post-meta-item-icon">
       <i class="ic i-coffee"></i>
     </span>
-    <span title="Reading time total">3:49</span>
+    <span title="Reading time total">3:38</span>
   </div>
   <div class="powered-by">
     Powered by <span class="exturl" data-url="aHR0cHM6Ly9oZXhvLmlv">Hexo</span> & Theme.<span class="exturl" data-url="aHR0cHM6Ly9naXRodWIuY29tL2FtZWhpbWUvaGV4by10aGVtZS1zaG9rYQ==">Shoka</span>
